@@ -1,0 +1,4 @@
+body{
+  background: var(--twitter-hover);
+  color: var(--twitter-text);
+}

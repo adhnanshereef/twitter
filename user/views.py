@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
+
 def signup(request):
-    return HttpResponse(request.user.email)
+    context = {'title': 'Sign up for Twitter'}
+    return render(request, 'user/signup.html', context)

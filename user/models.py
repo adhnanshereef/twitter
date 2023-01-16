@@ -5,14 +5,14 @@ from django.contrib.auth.models import AbstractBaseUser, UserManager, Permission
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(max_length=30, null=False, unique=True)
-    name = models.CharField(max_length=200, null=True)
-    email = models.EmailField(unique=True, null=True)
-    bio = models.TextField(null=True)
+    username = models.CharField(max_length=30, blank=False, unique=True)
+    name = models.CharField(max_length=200)
+    email = models.EmailField(unique=True)
+    bio = models.TextField(blank=True)
     joined = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
-    avatar = models.ImageField(null=True, default="avatar.svg")
-    theme = models.CharField(max_length=10, null=True, default='light')
+    avatar = models.ImageField(upload_to='avatar/', null=True, default="avatar/avatar.svg")
+    theme = models.CharField(max_length=10, blank=True, default='light')
     is_staff = models.BooleanField()
     is_superuser = models.BooleanField()
     USERNAME_FIELD = 'username'

@@ -1,3 +1,46 @@
 {% extends 'index.html' %} {% block content %} {% load static %}
 <link rel="stylesheet" href="{% static 'styles/user/style.css' %}" />
-hi {% endblock content %}
+<main class="container form-parent">
+  <div class="signup-container form-container">
+    <div class="header-x-logo">
+      <a href="{% url 'home' %}" class="close-a"
+        ><i class="fa-solid fa-xmark"></i
+      ></a>
+      <i class="fa-brands fa-twitter header-i"></i>
+      <div></div>
+    </div>
+    <div class="form-main">
+      <h1 class="form-title">Join Twitter today</h1>
+      <div class="form-padding"></div>
+      <a class="g-sign">
+        <img
+          src="{% static 'images\assets\logos\Google-G-Logo.png' %}"
+          width="25px"
+        />
+        &nbsp Sign up with Google</a
+      >
+      <div class="form-padding"></div>
+      <a class="apple-sign">
+        <img
+          src="{% static 'images\assets\logos\Apple-Logo.png' %}"
+          width="25px"
+        />
+        &nbsp Sign up with Apple</a
+      >
+      <div class="form-padding"></div>
+      <div class="line-or">
+        <p>--------------------</p>
+        &nbsp &nbsp<span>or</span>&nbsp &nbsp
+        <p>--------------------</p>
+      </div>
+      <div class="form-padding"></div>
+      <a class="email-sign"> Sign up with Email</a>
+      <p class="form-des">
+        By signing up, you agree to the <a href="">Terms of Service</a> and
+        <a href="">Privacy Policy</a>, including <a href="">Cookie Use.</a>
+      </p>
+      <p class="form-q">Have an account already? <a href="">Log in</a></p>
+    </div>
+  </div>
+</main>
+{% endblock content %}

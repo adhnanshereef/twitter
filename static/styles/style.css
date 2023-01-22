@@ -1,109 +1,111 @@
 /* Reset default styles */
-*{
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-  }
-  
-  /* Set base font and font size */
-  body {
-    background: var(--twitter-background);
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-size: 14px;
-    color: var(--twitter-text);
-    line-height: 1.5;
-  }
-  
-  /* Set link styles */
-  a{
-    color: var(--twitter-primary);
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Set button styles */
-  .btn {
-    background-color: var(--twitter-primary);
-    color: var(--twitter-text);
-    border-radius: 4px;
-    padding: 8px 12px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1;
-  }
-  
-  .btn:hover {
-    background-color: #0095f6;
-  }
-  
-  /* Set form styles */
-  form {
-    margin: 20px 0;
-  }
-  
-  label, input[type="text"], input[type="password"] {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
-  input[type="text"], input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
 
+/* Set base font and font size */
+body {
+  background: var(--twitter-background);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  color: var(--twitter-text);
+  line-height: 1.5;
+}
+
+/* Set link styles */
+a {
+  color: var(--twitter-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Set button styles */
+.btn {
+  background-color: var(--twitter-primary);
+  color: var(--twitter-text);
+  border-radius: 4px;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.btn:hover {
+  background-color: #0095f6;
+}
+
+/* Set form styles */
+form {
+  margin: 20px 0;
+}
+
+label,
+input[type="text"],
+input[type="password"] {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
 
 /* ------Default Classes------ */
 
 /* close btn a */
-.close-a{
+.close-a {
   color: var(--twitter-text);
   font-size: 20px;
 }
 
 /* Form */
 
-.form-parent{
+.form-parent {
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.form-container{
+.form-container {
   width: 600px;
   height: 600px;
   border-radius: 17.5px;
   background: var(--twitter-background);
 }
-.header-x-logo{
+.header-x-logo {
   padding: 14px 20px;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.header-x-logo .header-i{
+.header-x-logo .header-i {
   padding-right: 45px;
   font-size: 30px;
 }
 
-.form-main{
-  padding:  5px 145px;
+.form-main {
+  padding: 5px 145px;
 }
 
-.form-title{
+.form-title {
   font-size: 27px;
   font-weight: bold;
 }
@@ -114,7 +116,7 @@
   font-weight: 500;
   font-size: 14px;
   background: var(--twitter-text);
-  padding:  8px 30px;
+  padding: 8px 30px;
   border-radius: 25px;
   width: 250px;
   display: flex;
@@ -123,7 +125,7 @@
   align-items: center;
 }
 
-.g-sign:hover{
+.g-sign:hover {
   text-decoration: none;
 }
 
@@ -133,7 +135,7 @@
   font-weight: 500;
   font-size: 14px;
   background: var(--twitter-text);
-  padding:  8px 30px;
+  padding: 8px 30px;
   border-radius: 25px;
   width: 250px;
   display: flex;
@@ -142,7 +144,7 @@
   align-items: center;
 }
 
-.apple-sign:hover{
+.apple-sign:hover {
   text-decoration: none;
 }
 .email-sign {
@@ -151,7 +153,7 @@
   font-weight: bold;
   font-size: 14px;
   background: var(--twitter-text);
-  padding:  8px 30px;
+  padding: 8px 30px;
   border-radius: 25px;
   width: 250px;
   display: flex;
@@ -160,15 +162,15 @@
   align-items: center;
 }
 
-.email-sign:hover{
+.email-sign:hover {
   text-decoration: none;
 }
 
-.form-padding{
+.form-padding {
   height: 25px;
 }
 
-.line-or{
+.line-or {
   width: 100%;
   height: 20px;
   display: flex;
@@ -177,23 +179,72 @@
   align-items: center;
 }
 
-.line-or p{
+.line-or p {
   color: var(--twitter-border);
   font-size: 23px;
   font-weight: lighter;
   letter-spacing: -2px;
 }
 
-.form-des{
+.form-des {
   margin-top: 10px;
   width: 300px;
   font-size: 13px;
   color: var(--twitter-border);
 }
 
-.form-q{
+.form-q {
   margin-top: 50px;
   width: 300px;
   font-size: 13px;
   color: var(--twitter-border);
+}
+
+.form-group {
+  padding: 5px;
+  width: 100%;
+  border: 1px solid var(--twitter-border);
+  height: 40px;
+  border-radius: 5px;
+}
+
+.form-group input {
+  border: none;
+  outline: none;
+  width: 95%;
+  height: 55%;
+  background: none;
+  margin: 0;
+  top: 5px;
+  color: var(--twitter-text);
+  z-index: 1;
+}
+
+.form-group label {
+  margin: 0;
+  position: relative;
+  top: -30px;
+  left: 4px;
+  color: var(--twitter-border);
+  font-weight: 500;
+  padding: 0;
+  font-size: 17px;
+  z-index: 2;
+  width: 10px;
+  transition: top 0.3s ease-in-out;
+}
+
+.form-group input:valid ~ label {
+  top: -40px;
+  left: 4px;
+  font-size: 10px;
+}
+.form-group input:focus ~ label {
+  top: -40px;
+  left: 4px;
+  font-size: 10px;
+  color: var(--twitter-primary);
+}
+.focused{
+  border: 1.5px solid var(--twitter-primary);
 }

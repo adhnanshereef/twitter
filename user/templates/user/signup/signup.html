@@ -1,6 +1,6 @@
 {% extends 'index.html' %} {% block content %} {% load static %}
 <link rel="stylesheet" href="{% static 'styles/user/style.css' %}" />
-<main class="container form-parent">
+<main class="container sign form-parent">
   <div class="signup-container form-container">
     <div class="header-x-logo">
       <a href="{% url 'home' %}" class="close-a"
@@ -34,7 +34,7 @@
         <p>--------------------</p>
       </div>
       <div class="form-padding"></div>
-      <a class="email-sign"> Sign up with Email</a>
+      <a class="email-sign" href="{% url 'signupwithemail' %}" > Create account</a>
       <p class="form-des">
         By signing up, you agree to the <a href="">Terms of Service</a> and
         <a href="">Privacy Policy</a>, including <a href="">Cookie Use.</a>

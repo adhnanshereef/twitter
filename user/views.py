@@ -4,4 +4,8 @@ from django.http import HttpResponse
 
 def signup(request):
     context = {'title': 'Sign up for Twitter'}
-    return render(request, 'user/signup.html', context)
+    return render(request, 'user/signup/signup.html', context)
+
+def signupwithemail(request):
+    context = {'title': 'Sign up for Twitter'}
+    return render(request, 'user/signup/email-signup.html', context)

@@ -1,0 +1,23 @@
+<div class="sign-main">
+  <div class="sign-padding"></div>
+  <h1 class="form-title">Customize your experience</h1>
+  <div style="height: 10px"></div>
+  <form action="{% url 'signupwithemail' %}" method="POST" class="sign-form">
+    {% csrf_token %}
+    <h3>Track where you see Twitter content across the web</h3>
+    <div>
+      <label
+        >Twitter uses this data to personalize your experience. This web
+        browsing history will never be stored with your name, email, or phone
+        number.</label
+      >
+      <input type="checkbox" name="track-web" />
+    </div>
+    <div class="form-padding"></div>
+    <p class="form-des" style="width: 100%">
+      By signing up, you agree to the <a href="">Terms of Service</a> and
+      <a href="">Privacy Policy</a>, including <a href="">Cookie Use.</a>
+    </p>
+    <input type="submit" value="Next" />
+  </form>
+</div>

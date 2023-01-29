@@ -1,0 +1,16 @@
+<div class="sign-main">
+    <div class="sign-padding"></div>
+    <h1 class="form-title">We sent you a code</h1>
+    <div style="height: 10px"></div>
+    <p class="form-des">Enter it below to verify extremepr555@gmail.com.</p>
+    <div style="height: 10px"></div>
+    <form action="{% url 'signupwithemail' %}" method="POST" class="sign-form">
+      {% csrf_token %}
+      <div class="form-group">
+        <input type="number" name="v-c" required />
+        <label>Verification Code</label>
+      </div>
+      <div class="form-padding"></div>
+      <input type="submit" value="Verify">
+    </form>
+  </div>

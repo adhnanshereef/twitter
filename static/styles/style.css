@@ -52,14 +52,18 @@ form {
 
 label,
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="number"],
+input[type="email"] {
   display: block;
   font-size: 14px;
   margin-bottom: 10px;
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="number"],
+input[type="email"] {
   width: 100%;
   padding: 8px;
   border-radius: 4px;
@@ -188,7 +192,6 @@ input[type="password"] {
 
 .form-des {
   margin-top: 10px;
-  width: 300px;
   font-size: 13px;
   color: var(--twitter-border);
 }
@@ -245,6 +248,6 @@ input[type="password"] {
   font-size: 10px;
   color: var(--twitter-primary);
 }
-.focused{
+.focused {
   border: 1.5px solid var(--twitter-primary);
 }

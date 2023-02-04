@@ -69,3 +69,26 @@ def signout(request):
         return redirect('home')
     logout(request)
     return redirect('home')
+
+
+def signin(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        try:
+            user = User.objects.get(username=username)
+        except:
+            messages.error(request, "Account Doesn't exist")
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            if request.GET.get('next'):
+                return redirect(request.GET.get('next'))
+            else:
+                return redirect('home')
+        else:
+            messages.error(request, 'Password went wrong')
+    context = {'title':'Login in to Twitter'}
+    return render(request, 'user/login/login.html', context)

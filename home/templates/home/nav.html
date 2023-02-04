@@ -1,0 +1,41 @@
+{% load static %}
+<nav class="nav" >
+    <div class="col " >
+        <a href="{% url 'home' %}" class="nav-sec">
+            <i class="fa-brands fa-twitter"  ></i> <span></span>
+        </a>
+        <a href="{% url 'home' %}" class="nav-sec">
+            <i class="fa-solid fa-house"></i></i> <span>Home</span>
+        </a>
+        <a href="{% url 'home' %}" class="nav-sec">
+            <i class="fa-solid fa-hashtag"></i> <span>Explore</span>
+        </a>
+        <a href="{% url 'home' %}" class="nav-sec">
+            <i class="fa-regular fa-bell"></i> <span>Notifications</span>
+        </a>
+        <a href="{% url 'home' %}" class="nav-sec">
+            <i class="fa-regular fa-envelope"></i> <span>Messages</span>
+        </a>
+        <a href="{% url 'home' %}" class="nav-sec">
+            <i class="fa-regular fa-bookmark"></i> <span>Bookmarks</span>
+        </a>
+        <a href="{% url 'home' %}" class="nav-sec">
+            <i class="fa-solid fa-b"></i> <span>Twitter Blue</span>
+        </a>
+        <a href="{% url 'home' %}" class="nav-sec">
+            <i class="fa-regular fa-user"></i> <span>Profile</span>
+        </a>
+        <button href="{% url 'home' %}" class="nav-sec">
+            <i class="fa-solid fa-ellipsis"></i> <span>More</span>
+        </button>
+        <a class="btn" href="{% url 'home' %}">Tweet</a>
+    </div>
+    <button>
+        <img width="40px" src="{% static 'images/avatar.svg' %}" alt="">
+        <div>
+            <span>{{request.user.name}}</span>
+            <p>@{{request.user.name}}</p>
+        </div>
+        <i class="fa-solid fa-ellipsis"></i>
+    </button>
+</nav>

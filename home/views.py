@@ -4,4 +4,4 @@ from django.http import HttpResponse
 
 def home(request):
     context = {'title': 'Explore'}
-    return render(request, 'index.html', context)
+    return render(request, 'home/home.html', context)

@@ -1,9 +1,10 @@
 .container {
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: row; 
 }
 
+/* Nav */
 .nav {
   width: 300px;
   display: flex;
@@ -14,12 +15,9 @@
   overflow: auto;
   border-right: 1px solid var(--twitter-border);
   padding: 10px;
+  position: fixed;
 }
 
-.col {
-  display: flex;
-  flex-direction: column;
-}
 
 .nav-sec {
   padding: 12px;
@@ -66,7 +64,7 @@
     margin-bottom: 10px;
     background: none;
     padding: 12px;
-    border-radius: 25px;
+    border-radius: 50px;
     text-decoration: none;
 }
 
@@ -98,4 +96,59 @@
     color: var(--twitter-placeholder);
 }
 
+/* Nav end */
 
+/* Right bar */
+.right-bar{
+  height: 97vh;
+  width: 424px;
+  position: fixed;
+  right: 0;
+  border-left: 1px solid var(--twitter-border);
+}
+/* Right bar end */
+
+
+/* Main */
+.main{
+  width: 620px;
+  position: absolute;
+  top: 0;
+  left: 321px;
+}
+
+.main-header{
+  background: var(--twitter-transprant);
+  width: 620px;
+  position: fixed;
+  top: 0px;
+  border-bottom: 1px solid var(--twitter-border);
+  z-index: 1;
+  backdrop-filter: blur(4px);
+}
+
+/* Tweet */
+.tweet-box{
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--twitter-border);
+}
+
+.texta{
+  color: var(--twitter-text);
+  font-size: 21px;
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  background: none;
+  overflow: auto;
+  line-height: 1.4;
+  max-width: 500px;
+  min-height: 10px;
+  height: auto;
+}
+
+.texta::placeholder{
+  color: var(--twitter-placeholder);
+}

@@ -14,15 +14,24 @@
       referrerpolicy="no-referrer"
     />
 
+    <!-- jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.js"
+      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Javascript -->
+    
     <!-- Essentials -->
     <link
-      rel="shortcut icon"
-      href="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-logo-vector-png-clipart-1.png"
-      type="image/x-icon"
+    rel="shortcut icon"
+    href="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-logo-vector-png-clipart-1.png"
+    type="image/x-icon"
     />
     <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
     <title>{{title}} / Twitter</title>
-
+    
     <!-- Variables -->
     {% if request.user.theme == "dark" %}
     <link rel="stylesheet" href="{% static 'styles/variables/dark.css' %}" />
@@ -34,14 +43,14 @@
   </head>
   <body>
     {% for message in messages %}
-
+    
     <div class="alert alert-success">
       <a class="close" href="#" data-dismiss="alert">×</a>
       {{ message }}
     </div>
-
-    {% endfor %}
-    {% block content %} {% endblock content %}
+    
+    {% endfor %} {% block content %} {% endblock content %}
   </body>
   <script src="{% static 'javascript/script.js' %}"></script>
-</html>
+  </html>
+  

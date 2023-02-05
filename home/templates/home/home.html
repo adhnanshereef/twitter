@@ -1,9 +1,70 @@
 {% include 'index.html' %} {% block content %} {% load static %}
 
 <link rel="stylesheet" href="{% static 'styles/home/style.css' %}" />
-<main class="container">
+<div class="container">
   {% include 'home/nav.html' %}
-  <section>{{request.user}}</section>
-</main>
+  <main class="main">
+    <div class="main-header">
+      <h2 style="font-size: 20px; font-weight: bold; margin: 13px">Home</h2>
+      <div class="row">
+        <h4
+          style="
+            width: 50%;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            height: 50px;
+          "
+          class="hover"
+        >
+          For you
+        </h4>
+        <h4
+          style="
+            width: 50%;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            height: 50px;
+          "
+          class="hover"
+        >
+          Following
+        </h4>
+      </div>
+    </div>
+
+    <!-- Tweet Box -->
+    <form style="margin-top: 110px" action="">
+      <div class="tweet-box row">
+        <img
+          src="{{request.user.avatar.url}}"
+          width="50px"
+          height="50px"
+          style="border-radius: 50%; margin: 10px"
+        />
+        <div class="col" style="width: 87%; margin-top: 20px">
+          <textarea
+            class="texta"
+            placeholder="What's happening?"
+            name="text"
+          ></textarea>
+          <div class="actions row">
+            <div>
+              <button><i class="fa-regular fa-image"></i></button>
+              <button><i class="fa-regular fa-gif"></i></button>
+              <button><i class="fa-solid fa-list"></i></button>
+              <button><i class="fa-regular fa-face-smile"></i></button>
+              <button><i class="fa-regular fa-calendar"></i></button>
+              <button disabled><i class="fa-solid fa-location-dot"></i></button>
+            </div>
+            <input type="submit" value="Tweet" class="small-btn" />
+          </div>
+        </div>
+      </div>
+    </form>
+  </main>
+  <section class="right-bar">g</section>
+</div>
 
 {% endblock content %}

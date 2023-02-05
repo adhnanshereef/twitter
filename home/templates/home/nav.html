@@ -47,7 +47,13 @@
   <!-- User -->
   <a href="{% url 'logout' %}" class="nav-user">
     <div style="display: flex; flex-direction: row">
-      <img width="40px" src="{% static 'images/avatar.svg' %}" alt="" />
+      <img
+        width="40px"
+        height="40px"
+        src="{{request.user.avatar.url}}"
+        style="border-radius: 50%"
+        alt=""
+      />
       <div class="nav-user-name">
         <span>{{request.user.name}}</span>
         <small>@{{request.user}}</small>

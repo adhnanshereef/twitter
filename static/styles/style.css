@@ -73,6 +73,15 @@ a:hover {
   padding: 1px 2.5px;
 }
 
+.small-btn{
+  width: 100px;
+  padding: 10px;
+  font-weight: bold;
+  color: white;
+  border-radius: 50px;
+  background: var(--twitter-primary);
+}
+
 /* Form styles */
 
 label,
@@ -98,9 +107,19 @@ input[type="email"] {
 /* ------Default Classes------ */
 
 /* row and column */
-.row{
+.row {
   display: flex;
   flex-direction: row;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hover */
+.hover:hover{
+  background: var(--twitter-hover);
 }
 
 /* close btn a */

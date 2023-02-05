@@ -1,42 +1,101 @@
-.container{
-    width: 100%;
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.nav {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 97vh;
+  overflow: auto;
+  border-right: 1px solid var(--twitter-border);
+  padding: 10px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-sec {
+  padding: 12px;
+  font-size: 19px;
+  color: var(--twitter-text);
+  border-radius: 25px;
+}
+
+.nav-sec:hover {
+  text-decoration: none;
+  background: var(--twitter-hover);
+}
+.nav-logo {
+  padding: 12px;
+  font-size: 30px;
+  width: 30px;
+  border-radius: 50%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.nav-logo:hover {
+  text-decoration: none;
+  background: var(--twitter-light-blue);
+}
+
+.nav-sec span {
+  margin-left: 15px;
+}
+
+.nav-sec i {
+  font-size: 22px;
+}
+
+.nav-user{
     display: flex;
     flex-direction: row;
-}
-
-.nav{
-    width: 317px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: space-between;
-    height: 97vh;
-    overflow: auto;
-    border-right: 1px solid var(--twitter-border);
-    padding: 10px;
-}
-
-.col{
-    display: flex;
-    flex-direction: column;
-}
-
-.nav-sec{
+    align-items: center;
+    width: 65%;
+    margin-bottom: 10px;
+    background: none;
     padding: 12px;
+    border-radius: 25px;
+    text-decoration: none;
+}
+
+.nav-user:hover{
+    background: var(--twitter-hover);
+    text-decoration: none;  
+}
+
+.nav-user i{
     font-size: 20px;
     color: var(--twitter-text);
-    border-radius: 15px;
 }
 
-.nav-sec:hover{
-    text-decoration: none;
-    background: var(--twitter-transprent);
+.nav-user-name{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10px;
 }
 
-.nav-sec span{
-    margin-left: 15px;
+.nav-user-name span{
+    font-size: 15px;
+    color: var(--twitter-text);
+    font-weight: bold;
 }
 
-.nav-sec i{
-    font-size: 24px;
+.nav-user-name small{
+    font-size: 15px;
+    color: var(--twitter-placeholder);
 }
+
+

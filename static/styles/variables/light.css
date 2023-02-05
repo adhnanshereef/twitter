@@ -1,12 +1,12 @@
 :root {
-    --twitter-background: #ffffff; /* Background color for the entire interface */
-    --twitter-transprant: #989998; /* Background color for the entire interface */
-    --twitter-primary: #1da1f2; /* Primary color for buttons and links */
-    --twitter-text: #14171a; /* Text color for the interface */
-    --twitter-btn: #eef2f4; /* Background color for hover state on elements */
-    --twitter-hover: #f5f8fa; /* Background color for hover state on elements */
-    --twitter-border: #c6d4df; /* Border color for elements */
-    --twitter-placeholder: #8899a6; /* Placeholder text color */
-    
-  }
-  
+  --twitter-background: #ffffff; /* Background color for the entire interface */
+  --twitter-transprant: #989998; /* Background color for the entire interface */
+  --twitter-primary: #1da1f2; /* Primary color for buttons and links */
+  --twitter-primary-hover: #049bff;
+  --twitter-light-blue: #d1edffc5;
+  --twitter-text: #0f1419; /* Text color for the interface */
+  --twitter-btn: #cbd3d6; /* Background color for hover state on elements */
+  --twitter-hover: #edeeee; /* Background color for hover state on elements */
+  --twitter-border: #c6d4df; /* Border color for elements */
+  --twitter-placeholder: #8b98a5; /* Placeholder text color */
+}

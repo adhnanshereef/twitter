@@ -1,4 +1,4 @@
-/* Reset default styles */
+/* Default styles */
 * {
   margin: 0;
   padding: 0;
@@ -8,13 +8,21 @@
   vertical-align: baseline;
 }
 
-/* Set base font and font size */
+/* Basic Styles */
 body {
   background: var(--twitter-background);
   font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 14px;
   color: var(--twitter-text);
   line-height: 1.5;
+}
+
+/* Space */
+.space1 {
+  height: 5px;
+}
+.space2 {
+  height: 10px;
 }
 
 /* Set link styles */
@@ -27,28 +35,45 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Set button styles */
+/* Button styles */
 .btn {
+  width: 100%;
   background-color: var(--twitter-primary);
-  color: var(--twitter-text);
-  border-radius: 4px;
-  padding: 8px 12px;
+  color: white;
+  border-radius: 25px;
+  padding: 17px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 600;
   line-height: 1;
 }
 
 .btn:hover {
-  background-color: #0095f6;
+  background-color: var(--twitter-primary-hover);
+  text-decoration: none;
 }
 
-/* Set form styles */
-form {
-  margin: 20px 0;
+.btn-a {
+  background: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
 }
+
+.btn-a:hover {
+  background: var(--twitter-hover);
+}
+
+.btn-a i {
+  border: 2px solid var(--twitter-text);
+  border-radius: 50%;
+  padding: 1px 2.5px;
+}
+
+/* Form styles */
 
 label,
 input[type="text"],
@@ -71,6 +96,12 @@ input[type="email"] {
 }
 
 /* ------Default Classes------ */
+
+/* row and column */
+.row{
+  display: flex;
+  flex-direction: row;
+}
 
 /* close btn a */
 .close-a {

@@ -2,8 +2,8 @@
 
 <link rel="stylesheet" href="{% static 'styles/home/style.css' %}" />
 <main class="container">
-    {% include 'home/nav.html' %}
-    <section>H</section>
+  {% include 'home/nav.html' %}
+  <section>{{request.user}}</section>
 </main>
 
 {% endblock content %}

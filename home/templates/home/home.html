@@ -35,7 +35,8 @@
     </div>
 
     <!-- Tweet Box -->
-    <form style="margin-top: 110px" method="POST" action="">
+    <form style="margin-top: 110px" method="POST" action="{% url 'tweet' %}">
+      {% csrf_token %}
       <div class="tweet-box row">
         <img
           src="{{request.user.avatar.url}}"
@@ -47,7 +48,7 @@
           <textarea
             class="texta"
             placeholder="What's happening?"
-            name="text"
+            name="content"
           ></textarea>
           <button class="non-btn" style="margin: 10px 0">
             <i class="fa-solid fa-earth-americas"></i> Every one can reply
@@ -78,7 +79,7 @@
               <button class="nav-logo" title="Schedule">
                 <i class="fa-regular fa-calendar"></i>
               </button>
-              <button class="nav-logo"  disabled>
+              <button class="nav-logo" disabled>
                 <i class="fa-solid fa-location-dot"></i>
               </button>
             </div>

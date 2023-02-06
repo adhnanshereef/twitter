@@ -36,6 +36,10 @@ a:hover {
 }
 
 /* Button styles */
+button{
+  cursor: pointer;
+}
+
 .btn {
   width: 100%;
   background-color: var(--twitter-primary);
@@ -48,6 +52,7 @@ a:hover {
   font-size: 17px;
   font-weight: 600;
   line-height: 1;
+  cursor: pointer;
 }
 
 .btn:hover {
@@ -80,6 +85,19 @@ a:hover {
   color: white;
   border-radius: 50px;
   background: var(--twitter-primary);
+  cursor: pointer;
+}
+
+.non-btn{
+  background: none;
+  padding: 5px 10px;
+  color: var(--twitter-primary);
+  border-radius: 25px;
+  width: fit-content;
+}
+
+.non-btn:hover {
+  background: var(--twitter-light-blue);
 }
 
 /* Form styles */
@@ -120,6 +138,13 @@ input[type="email"] {
 /* Hover */
 .hover:hover{
   background: var(--twitter-hover);
+}
+
+/* Hr */
+.hr1{
+  width: 100%;
+  height: 0px;
+  border-bottom: 1px solid var(--twitter-border);
 }
 
 /* close btn a */

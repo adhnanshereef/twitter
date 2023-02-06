@@ -35,7 +35,7 @@
     </div>
 
     <!-- Tweet Box -->
-    <form style="margin-top: 110px" action="">
+    <form style="margin-top: 110px" method="POST" action="">
       <div class="tweet-box row">
         <img
           src="{{request.user.avatar.url}}"
@@ -43,20 +43,44 @@
           height="50px"
           style="border-radius: 50%; margin: 10px"
         />
-        <div class="col" style="width: 87%; margin-top: 20px">
+        <div class="col" style="width: 87%; padding-right: 25px">
           <textarea
             class="texta"
             placeholder="What's happening?"
             name="text"
           ></textarea>
+          <button class="non-btn" style="margin: 10px 0">
+            <i class="fa-solid fa-earth-americas"></i> Every one can reply
+          </button>
+          <div style="width: 98%" class="hr1"></div>
           <div class="actions row">
-            <div>
-              <button><i class="fa-regular fa-image"></i></button>
-              <button><i class="fa-regular fa-gif"></i></button>
-              <button><i class="fa-solid fa-list"></i></button>
-              <button><i class="fa-regular fa-face-smile"></i></button>
-              <button><i class="fa-regular fa-calendar"></i></button>
-              <button disabled><i class="fa-solid fa-location-dot"></i></button>
+            <div class="action row">
+              <button class="nav-logo" title="Media">
+                <i class="fa-regular fa-image"></i>
+              </button>
+              <button class="nav-logo" title="GIF">
+                <i
+                  style="
+                    font-size: 7.5px;
+                    border: 2px solid var(--twitter-primary);
+                    border-radius: 5px;
+                    font-weight: bold;
+                  "
+                  >GIF</i
+                >
+              </button>
+              <button class="nav-logo" title="Poll">
+                <i class="fa-solid fa-list"></i>
+              </button>
+              <button class="nav-logo" title="Emoji">
+                <i class="fa-regular fa-face-smile"></i>
+              </button>
+              <button class="nav-logo" title="Schedule">
+                <i class="fa-regular fa-calendar"></i>
+              </button>
+              <button class="nav-logo"  disabled>
+                <i class="fa-solid fa-location-dot"></i>
+              </button>
             </div>
             <input type="submit" value="Tweet" class="small-btn" />
           </div>

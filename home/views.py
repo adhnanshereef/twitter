@@ -4,7 +4,8 @@ from .models import Tweet
 
 
 def home(request):
-    context = {'title': ''}
+    tweets = Tweet.objects.all()
+    context = {'title': '','tweets':tweets}
     if request.user.is_authenticated:
         context['title'] = 'Home'
         return render(request, 'home/home/home.html', context)

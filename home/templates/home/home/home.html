@@ -31,59 +31,61 @@
   </div>
 
   <!-- Tweet Box -->
-  <form style="margin-top: 110px" method="POST" action="{% url 'tweet' %}">
-    {% csrf_token %}
-    <div class="tweet-box row">
-      <img
-        src="{{request.user.avatar.url}}"
-        width="50px"
-        height="50px"
-        style="border-radius: 50%; margin: 10px"
-      />
-      <div class="col" style="width: 87%; padding-right: 25px">
-        <textarea
-          class="texta"
-          placeholder="What's happening?"
-          name="content"
-        ></textarea>
-        <button class="non-btn" style="margin: 10px 0">
-          <i class="fa-solid fa-earth-americas"></i> Every one can reply
-        </button>
-        <div style="width: 98%" class="hr1"></div>
-        <div class="actions row">
-          <div class="action row">
-            <button class="nav-logo" title="Media">
-              <i class="fa-regular fa-image"></i>
-            </button>
-            <button class="nav-logo" title="GIF">
-              <i
-                style="
-                  font-size: 7.5px;
-                  border: 2px solid var(--twitter-primary);
-                  border-radius: 5px;
-                  font-weight: bold;
-                "
-                >GIF</i
-              >
-            </button>
-            <button class="nav-logo" title="Poll">
-              <i class="fa-solid fa-list"></i>
-            </button>
-            <button class="nav-logo" title="Emoji">
-              <i class="fa-regular fa-face-smile"></i>
-            </button>
-            <button class="nav-logo" title="Schedule">
-              <i class="fa-regular fa-calendar"></i>
-            </button>
-            <button class="nav-logo" disabled>
-              <i class="fa-solid fa-location-dot"></i>
-            </button>
+  {% include 'home/home/tweet.html' %}
+
+  <!-- Tweet Posts -->
+  <div class="col">
+    <!-- Tweet Post -->
+    {% for tweet in tweets %}
+    <div class="row between post">
+      <img width="50" height="50" style="border-radius: 50%;" src="{{tweet.user.avatar.url}}" alt="" />
+      <div class="col">
+        <div class="row between">
+          <div class="row post-action">
+            <h4>{{tweet.user.name}}</h4>
+            <small class="row" style="align-items: center"
+              >@{{tweet.user}} &nbsp
+              <div class="dot"></div>
+              &nbsp 4h
+            </small>
           </div>
-          <input type="submit" value="Tweet" class="small-btn" />
+          <button title="More"><i class="fa-solid fa-ellipsis"></i></button>
+        </div>
+        <p>{{tweet.content}}</p>
+        <div class="row post-actions">
+          <div class="row post-action">
+            <a title="Reply" href=""><i class="fa-regular fa-comment"></i></a>
+            {% if not tweet.reply_count == 0 %}
+            <small>{{tweet.reply_coun}}</small>
+            {% endif %}
+          </div>
+
+          <div class="row post-action">
+            <a title="Retweet" href=""><i class="fa-solid fa-retweet"></i></a>
+            {% if not tweet.retweet == 0 %}
+            <small>{{tweet.retweet}}</small>
+            {% endif %}
+          </div>
+          <div class="row post-action">
+            <a title="Like" href=""><i class="fa-regular fa-heart"></i></a>
+            {% if not tweet.like == 0 %}
+            <small>{{tweet.like}}</small>
+            {% endif %}
+          </div>
+          <div class="row post-action">
+            <a title="View" href=""><i class="fa-solid fa-chart-simple"></i></a>
+            {% if not tweet.view == 0 %}
+            <small>{{tweet.view}}</small>
+            {% endif %}
+          </div>
+          <div class="Share">
+            <a href=""><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
+          </div>
         </div>
       </div>
     </div>
-  </form>
+    {% endfor %}
+  </div>
 </main>
 
 {% endblock main %}

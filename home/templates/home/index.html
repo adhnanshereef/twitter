@@ -1,0 +1,11 @@
+{% include 'index.html' %} {% block content %} {% load static %}
+
+<link rel="stylesheet" href="{% static 'styles/home/style.css' %}" />
+<div class="container">
+  {% include 'home/nav.html' %}
+  {% block main %}
+  {% endblock main %}
+  <section class="right-bar">g</section>
+</div>
+
+{% endblock content %}

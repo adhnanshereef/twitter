@@ -1,0 +1,89 @@
+{% include 'home/index.html' %} {% block main %} {% load static %}
+<main class="main">
+  <div class="main-header">
+    <h2 style="font-size: 20px; font-weight: bold; margin: 13px">Home</h2>
+    <div class="row">
+      <h4
+        style="
+          width: 50%;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          height: 50px;
+        "
+        class="hover"
+      >
+        For you
+      </h4>
+      <h4
+        style="
+          width: 50%;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          height: 50px;
+        "
+        class="hover"
+      >
+        Following
+      </h4>
+    </div>
+  </div>
+
+  <!-- Tweet Box -->
+  <form style="margin-top: 110px" method="POST" action="{% url 'tweet' %}">
+    {% csrf_token %}
+    <div class="tweet-box row">
+      <img
+        src="{{request.user.avatar.url}}"
+        width="50px"
+        height="50px"
+        style="border-radius: 50%; margin: 10px"
+      />
+      <div class="col" style="width: 87%; padding-right: 25px">
+        <textarea
+          class="texta"
+          placeholder="What's happening?"
+          name="content"
+        ></textarea>
+        <button class="non-btn" style="margin: 10px 0">
+          <i class="fa-solid fa-earth-americas"></i> Every one can reply
+        </button>
+        <div style="width: 98%" class="hr1"></div>
+        <div class="actions row">
+          <div class="action row">
+            <button class="nav-logo" title="Media">
+              <i class="fa-regular fa-image"></i>
+            </button>
+            <button class="nav-logo" title="GIF">
+              <i
+                style="
+                  font-size: 7.5px;
+                  border: 2px solid var(--twitter-primary);
+                  border-radius: 5px;
+                  font-weight: bold;
+                "
+                >GIF</i
+              >
+            </button>
+            <button class="nav-logo" title="Poll">
+              <i class="fa-solid fa-list"></i>
+            </button>
+            <button class="nav-logo" title="Emoji">
+              <i class="fa-regular fa-face-smile"></i>
+            </button>
+            <button class="nav-logo" title="Schedule">
+              <i class="fa-regular fa-calendar"></i>
+            </button>
+            <button class="nav-logo" disabled>
+              <i class="fa-solid fa-location-dot"></i>
+            </button>
+          </div>
+          <input type="submit" value="Tweet" class="small-btn" />
+        </div>
+      </div>
+    </div>
+  </form>
+</main>
+
+{% endblock main %}

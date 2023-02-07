@@ -20,4 +20,5 @@ def tweet(request):
             user=request.user, content=request.POST.get('content'))
         tweet.save()
         return redirect('home')
-    return redirect('home')
+    context={'title':'Tweet'}
+    return render(request, 'home/tweet.html',context)

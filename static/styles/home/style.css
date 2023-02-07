@@ -116,7 +116,7 @@
 }
 
 .main-header {
-  background: var(--twitter-transprant);
+  background: var(--twitter-transprant-light);
   width: 620px;
   position: fixed;
   top: 0px;
@@ -172,6 +172,16 @@
 
 .actions .action button:hover {
   background: var(--twitter-light-blue);
+}
+
+/* Tweet page */
+.tweet-container{
+  margin-top: 50px;
+  padding: 15px 20px;
+  background: var(--twitter-background);
+  height: max-content;
+  border-radius: 25px;
+  width: 550px;
 }
 
 /* Post */

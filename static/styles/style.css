@@ -18,6 +18,20 @@ body {
   line-height: 1.5;
 }
 
+/* Bg */
+.fixed-bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: var(--twitter-transprant);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+
+}
+
 /* Space */
 .space1 {
   height: 5px;

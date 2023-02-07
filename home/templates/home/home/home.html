@@ -37,53 +37,7 @@
   <div class="col">
     <!-- Tweet Post -->
     {% for tweet in tweets %}
-    <div class="row between post">
-      <img width="50" height="50" style="border-radius: 50%;" src="{{tweet.user.avatar.url}}" alt="" />
-      <div class="col">
-        <div class="row between">
-          <div class="row post-action">
-            <h4>{{tweet.user.name}}</h4>
-            <small class="row" style="align-items: center"
-              >@{{tweet.user}} &nbsp
-              <div class="dot"></div>
-              &nbsp 4h
-            </small>
-          </div>
-          <button title="More"><i class="fa-solid fa-ellipsis"></i></button>
-        </div>
-        <p>{{tweet.content}}</p>
-        <div class="row post-actions">
-          <div class="row post-action">
-            <a title="Reply" href=""><i class="fa-regular fa-comment"></i></a>
-            {% if not tweet.reply_count == 0 %}
-            <small>{{tweet.reply_coun}}</small>
-            {% endif %}
-          </div>
-
-          <div class="row post-action">
-            <a title="Retweet" href=""><i class="fa-solid fa-retweet"></i></a>
-            {% if not tweet.retweet == 0 %}
-            <small>{{tweet.retweet}}</small>
-            {% endif %}
-          </div>
-          <div class="row post-action">
-            <a title="Like" href=""><i class="fa-regular fa-heart"></i></a>
-            {% if not tweet.like == 0 %}
-            <small>{{tweet.like}}</small>
-            {% endif %}
-          </div>
-          <div class="row post-action">
-            <a title="View" href=""><i class="fa-solid fa-chart-simple"></i></a>
-            {% if not tweet.view == 0 %}
-            <small>{{tweet.view}}</small>
-            {% endif %}
-          </div>
-          <div class="Share">
-            <a href=""><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
+    {% include 'home/home/post.html' %}
     {% endfor %}
   </div>
 </main>

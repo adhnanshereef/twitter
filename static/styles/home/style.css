@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
 }
 
 /* Nav */
@@ -17,7 +17,6 @@
   padding: 10px;
   position: fixed;
 }
-
 
 .nav-sec {
   padding: 12px;
@@ -55,69 +54,68 @@
   font-size: 22px;
 }
 
-.nav-user{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 65%;
-    margin-bottom: 10px;
-    background: none;
-    padding: 12px;
-    border-radius: 50px;
-    text-decoration: none;
+.nav-user {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 65%;
+  margin-bottom: 10px;
+  background: none;
+  padding: 12px;
+  border-radius: 50px;
+  text-decoration: none;
 }
 
-.nav-user:hover{
-    background: var(--twitter-hover);
-    text-decoration: none;  
+.nav-user:hover {
+  background: var(--twitter-hover);
+  text-decoration: none;
 }
 
-.nav-user i{
-    font-size: 20px;
-    color: var(--twitter-text);
+.nav-user i {
+  font-size: 20px;
+  color: var(--twitter-text);
 }
 
-.nav-user-name{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: 10px;
+.nav-user-name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 10px;
 }
 
-.nav-user-name span{
-    font-size: 15px;
-    color: var(--twitter-text);
-    font-weight: bold;
+.nav-user-name span {
+  font-size: 15px;
+  color: var(--twitter-text);
+  font-weight: bold;
 }
 
-.nav-user-name small{
-    font-size: 15px;
-    color: var(--twitter-placeholder);
+.nav-user-name small {
+  font-size: 15px;
+  color: var(--twitter-placeholder);
 }
 
 /* Nav end */
 
 /* Right bar */
-.right-bar{
+.right-bar {
   height: 97vh;
   width: 424px;
   position: fixed;
   right: 0;
-  border-left: 1px solid var(--twitter-border);
 }
 /* Right bar end */
 
-
 /* Main */
-.main{
+.main {
   width: 620px;
   position: absolute;
   top: 0;
   left: 321px;
+  border-right: 1px solid var(--twitter-border);
 }
 
-.main-header{
+.main-header {
   background: var(--twitter-transprant);
   width: 620px;
   position: fixed;
@@ -128,13 +126,13 @@
 }
 
 /* Tweet */
-.tweet-box{
+.tweet-box {
   width: 100%;
   justify-content: space-between;
   border-bottom: 1px solid var(--twitter-border);
 }
 
-.texta{
+.texta {
   color: var(--twitter-text);
   font-size: 21px;
   width: 100%;
@@ -150,18 +148,17 @@
   padding-right: 5px;
 }
 
-.texta::placeholder{
+.texta::placeholder {
   color: var(--twitter-placeholder);
 }
 
-.actions{
+.actions {
   width: 100%;
   justify-content: space-between;
   margin: 10px 0;
 }
 
-
-.actions .action button{
+.actions .action button {
   margin-left: 5px;
   background: none;
   font-size: 15px;
@@ -169,11 +166,60 @@
   padding: 17px;
 }
 
-.actions .action button i{
+.actions .action button i {
   padding: 1px;
 }
 
-.actions .action button:hover{
+.actions .action button:hover {
   background: var(--twitter-light-blue);
 }
 
+/* Post */
+.post {
+  padding: 20px;
+  border-bottom: 1px solid var(--twitter-border);
+}
+
+.post:hover {
+  background: var(--twitter-hover);
+}
+
+.post-main {
+  margin-top: 1px;
+  width: 89%;
+}
+
+.post-header h4 {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.post-header small {
+  align-items: center;
+  margin-left: 10px;
+  font-size: 13px;
+  color: var(--twitter-placeholder);
+}
+
+.post-content {
+  font-size: 15px;
+  color: var(--twitter-text);
+  margin-left: 2px;
+  margin-top: 2px;
+}
+
+.post-actions{
+  margin-left: -10px;
+}
+.post-action{
+  margin-right: 45px;
+  width: max-content;
+  font-size: 15px;
+  align-items: center;
+  background: none;
+}
+
+.post-action a {
+  color: var(--twitter-placeholder);
+  margin-right: 10px;
+}

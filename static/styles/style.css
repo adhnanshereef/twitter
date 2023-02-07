@@ -6,6 +6,7 @@
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  transition: .5s ease-in-out;
 }
 
 /* Basic Styles */
@@ -140,9 +141,39 @@ input[type="email"] {
   flex-direction: column;
 }
 
+/* alignment */
+
+.align{
+  justify-content: center;
+  align-items: center;
+}
+
+.align-x{
+  justify-content: center;
+}
+
+.align-y{
+  align-items: center;
+}
+
 /* Hover */
 .hover:hover{
   background: var(--twitter-hover);
+}
+
+.light-hover{
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.light-hover:hover{
+  color: var(--twitter-primary) !important;
+  background: var(--twitter-light-blue);
+  text-decoration: none;
 }
 
 /* Hr */

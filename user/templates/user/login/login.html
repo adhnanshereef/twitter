@@ -25,6 +25,9 @@
                 <input type="password" name="password" required />
                 <label>Password</label>
               </div>
+              {% if next %}
+              <input type="hidden" value="{{next}}" name="next_url" >
+              {% endif %}
               <div style="height: 25px"></div>
               
               <input type="submit" value="Login">

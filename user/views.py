@@ -5,6 +5,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from .models import User
 
+
 def signup(request):
     context = {'title': 'Sign up for Twitter'}
     return render(request, 'user/signup/signup.html', context)
@@ -47,7 +48,8 @@ def signupwithemail(request):
             if User.objects.filter(email=data['email']).exists():
                 request.session['step'] = 3
                 request.session.save()
-                messages.error(request,'Email already exist! Please use another one')
+                messages.error(
+                    request, 'Email already exist! Please use another one')
                 return render(request, 'user/signup/step3.html')
             else:
                 user = User.objects.create(name=data['name'], email=data['email'], username=username,
@@ -84,11 +86,14 @@ def signin(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            if request.GET.get('next'):
-                return redirect(request.GET.get('next'))
+            next_post=request.POST.get('next_url')
+            if next_post:
+                return redirect(next_post)
             else:
                 return redirect('home')
+            
         else:
             messages.error(request, 'Password went wrong')
-    context = {'title':'Login in to Twitter'}
+    next_url = request.GET.get('next')
+    context = {'title': 'Login in to Twitter','next':next_url}
     return render(request, 'user/login/login.html', context)

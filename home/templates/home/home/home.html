@@ -29,9 +29,11 @@
       </h4>
     </div>
   </div>
-
+<div style="height: 110px" ></div>
+{% if request.user.is_authenticated %}
   <!-- Tweet Box -->
   {% include 'home/home/tweet.html' %}
+  {% endif %}
 
   <!-- Tweet Posts -->
   <div class="col">

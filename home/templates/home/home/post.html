@@ -1,61 +1,86 @@
 <div class="row between post">
-    <img
-      width="50"
-      height="50"
-      style="border-radius: 50%; margin-top: 5px"
-      src="{{tweet.user.avatar.url}}"
-      alt=""
-    />
-    <div class="col post-main">
-      <div class="row between align-y">
-        <div class="row post-header">
-          <h4>{{tweet.user.name}}</h4>
-          <small class="row"
-            >@{{tweet.user}} &nbsp
-            <div class="dot"></div>
-            &nbsp 4h
-          </small>
-        </div>
-        <button class="non-btn light-hover" style="color: var(--twitter-placeholder);" title="More"><i class="fa-solid fa-ellipsis"></i></button>
+  <img
+    width="50"
+    height="50"
+    style="border-radius: 50%; margin-top: 5px"
+    src="{{tweet.user.avatar.url}}"
+    alt=""
+  />
+  <div class="col post-main">
+    <div class="row between align-y">
+      <div class="row post-header">
+        <h4>{{tweet.user.name}}</h4>
+        <small class="row"
+          >@{{tweet.user}} &nbsp
+          <div class="dot"></div>
+          &nbsp 4h
+        </small>
       </div>
-      <p class="post-content">{{tweet.content}}</p>
-      <div class="row align-y post-actions">
-        <div class="row post-action">
-          <a title="Reply" class="light-hover" href=""
-            ><i class="fa-regular fa-comment"></i
-          ></a>
-          <small>
-            {% if tweet.reply|length > 0 %} {{tweet.reply|length}} {% endif %}
-          </small>
-        </div>
+      <button
+        class="non-btn light-hover"
+        style="color: var(--twitter-placeholder)"
+        title="More"
+      >
+        <i class="fa-solid fa-ellipsis"></i>
+      </button>
+    </div>
+    <p class="post-content">{{tweet.content}}</p>
+    <div class="row align-y post-actions">
 
-        <div class="row post-action">
-          <a class="light-hover" title="Retweet" href=""
-            ><i class="fa-solid fa-retweet"></i
-          ></a>
-          <small>
-            {% if tweet.retweet|length > 0  %} {{tweet.retweet|length}} {% endif %}
-          </small>
-        </div>
-        <div class="row post-action">
-          <a class="light-hover" title="Like" href=""
-            ><i class="fa-regular fa-heart"></i
-          ></a>
-          <small>
-            {% if tweet.like|length > 0  %} {{tweet.like|length}} {% endif %}
-          </small>
-        </div>
-        <div class="row post-action">
-          <a class="light-hover" title="View" href=""
-            ><i class="fa-solid fa-chart-simple"></i
-          ></a>
-          <small>
-            {% if tweet.views|length > 0  %} {{tweet.views|length}} {% endif %}
-          </small>
-        </div>
-        <div title="Share" class="post-action">
-          <a class="light-hover" href=""><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
-        </div>
+      <!-- Reply -->
+      <form method="post" action="" class="row post-action">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{tweet.id}}" >
+        <button title="Reply" class="light-hover" type="submit">
+          <i class="fa-regular fa-comment"></i>
+        </button>
+        <small>
+          {% if tweet.reply.all|length > 0 %} {{tweet.reply.all|length}} {% endif %}
+        </small>
+      </form>
+
+      <!-- Retweet -->
+      <form method="post" action="" class="row post-action">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{tweet.id}}" >
+        <button class="light-hover" title="Retweet" type="submit">
+          <i class="fa-solid fa-retweet"></i>
+        </button>
+        <small>
+          {% if tweet.retweet.all|length > 0 %} {{tweet.retweet.all|length}} {% endif %}
+        </small>
+      </form>
+
+      <!-- Like -->
+      <form method="post" action="{% url 'likeTweet' %}" class="row post-action">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{tweet.id}}" >
+        <button class="light-hover" title="Like" type="submit">
+          <i class="fa-regular fa-heart"></i>
+        </button>
+        <small>
+          {% if tweet.like.all|length > 0 %} {{tweet.like.all|length}} {% endif %}
+        </small>
+      </form>
+
+      <!-- Views -->
+      <form method="post" action="" class="row post-action">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{tweet.id}}" >
+        <button class="light-hover" title="View" type="submit">
+          <i class="fa-solid fa-chart-simple"></i>
+        </button>
+        <small>
+          {% if tweet.views.all|length > 0 %} {{tweet.views.all|length}} {% endif %}
+        </small>
+      </form>
+
+      <!-- Share -->
+      <div title="Share" class="post-action">
+        <a class="light-hover" href=""
+          ><i class="fa-solid fa-arrow-up-from-bracket"></i
+        ></a>
       </div>
     </div>
   </div>
+</div>

@@ -229,7 +229,14 @@
   background: none;
 }
 
-.post-action a {
+.post-action button, .post-action a{
   color: var(--twitter-placeholder);
   margin-right: 10px;
+  background: none;
+}
+
+.post-action small{
+  font-size: 14px;
+  color: var(--twitter-placeholder);
+  font-weight: lighter;
 }

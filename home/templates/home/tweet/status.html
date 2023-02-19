@@ -145,10 +145,15 @@
       <!-- Post Actions End -->
     </div>
     <!-- Post Main end -->
+{% if request.user.is_authenticated %}
     <div class="hr1"></div>
+    {% else %}
+    <div style="width: 107%;margin-left: -19.5px;" class="hr1"></div>
+    {% endif %}
   </div>
 
 
+{% if request.user.is_authenticated %}
   <!-- Tweet Box -->
   <form method="POST" action="">
     {% csrf_token %}
@@ -195,6 +200,8 @@
       </div>
     </div>
   </form>
+  {% endif %}
+  <div style="height: 300px;" ></div>
 </main>
 
 {% endblock main %}

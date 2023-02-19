@@ -1,0 +1,11 @@
+{% include 'home/index.html' %} {% block main %} {% load static %}
+<main class="main">
+  <div class="main-header row align-y" style="border-bottom: none;" >
+    <a title="Back" class="back" href="{% url 'home' %}"><i class="fa-solid fa-arrow-left"></i></a> <h2 style="font-size: 20px; font-weight: bold; margin: 13px">Tweet</h2>
+  </div>
+  <div style="height: 60px"></div>
+  {{user}}
+  <div style="height: 300px;" ></div>
+</main>
+
+{% endblock main %}

@@ -1,0 +1,200 @@
+{% include 'home/index.html' %} {% block main %} {% load static %}
+<main class="main">
+  <div class="main-header row align-y" style="border-bottom: none;" >
+    <a title="Back" class="back" href="{% url 'home' %}"><i class="fa-solid fa-arrow-left"></i></a> <h2 style="font-size: 20px; font-weight: bold; margin: 13px">Tweet</h2>
+  </div>
+  <div style="height: 40px"></div>
+  <div class="col between post no-hover-bg" style="border-bottom: none;" >
+    <!-- More, Profile Picture, username, Name -->
+    <div class="row between align-y">
+      <div class="row align-y">
+        <img
+          width="50"
+          height="50"
+          style="border-radius: 50%; margin-top: 5px"
+          src="{{tweet.user.avatar.url}}"
+          alt=""
+        />
+        <div class="col post-header" style="margin-left: 10px">
+          <h4>{{tweet.user.name}}</h4>
+          <small style="margin: 0">@{{tweet.user}} </small>
+        </div>
+      </div>
+      <button
+        class="non-btn light-hover"
+        style="
+          color: var(--twitter-placeholder);
+          font-size: 17px;
+          font-weight: lighter;
+        "
+        title="More"
+      >
+        <i class="fa-solid fa-ellipsis"></i>
+      </button>
+    </div>
+    <!-- More, Profile Picture, username, Name    End -->
+
+    <!-- height-->
+    <div style="height: 10px"></div>
+
+    <!-- Post Main Start -->
+    <div class="col post-main" style="width: 100%">
+      <!-- Post Content -->
+      <p class="post-content">{{tweet.content}}</p>
+
+      <!-- height-->
+      <div style="height: 10px"></div>
+
+      <!-- More Details -->
+      <div class="col">
+        <div class="row align-y placeholder-color">
+          4:14 PM &nbsp
+          <div class="dot"></div>
+          &nbsp Feb 1, 2000 &nbsp
+          <div class="dot"></div>
+          &nbsp <span class="bold">&nbsp {{tweet.views.all|length}}</span> &nbsp Views
+        </div>
+        <!-- height-->
+        <div style="height: 10px"></div>
+        {% if request.user == tweet.user %}
+        <div class="col">
+          <!-- Line -->
+          <div class="hr1"></div>
+          <!-- height-->
+          <div style="height: 10px"></div>
+          <a
+            class="no-decoration"
+            style="color: var(--twitter-placeholder); text-decoration: none"
+            href=""
+            ><i class="fa-solid fa-chart-simple"></i> &nbsp View Tweet analytics
+          </a>
+        </div>
+        <!-- height-->
+        <div style="height: 10px"></div>
+        {% endif %} {% if tweet.like.all|length > 0 or tweet.retweet.all|length > 0 or tweet.reply.all|length > 0 %}
+        <div class="col">
+          <!-- Line -->
+          <div class="hr1"></div>
+          <!-- height-->
+          <div style="height: 10px"></div>
+          <div class="row" style="color: var(--twitter-placeholder)">
+            {% if tweet.like.all|length > 0 %}
+            <small style="margin-right: 15px"
+              ><span class="bold">{{tweet.like.all|length}}</span> &nbsp
+              Likes</small
+            >
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+        <!-- height-->
+        <div style="height: 10px"></div>
+      </div>
+      <!-- More Details End -->
+
+      <!-- line -->
+      <div class="hr1"></div>
+
+      <!-- Post Actions Start -->
+      <div class="row align-y post-actions around">
+        <!-- Reply -->
+        <form method="post" action="" class="row post-action">
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{tweet.id}}" />
+          <button title="Reply" class="light-hover" type="submit">
+            <i class="fa-regular fa-comment"></i>
+          </button>
+        </form>
+
+        <!-- Retweet -->
+        <form method="post" action="" class="row post-action">
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{tweet.id}}" />
+          <button class="light-hover" title="Retweet" type="submit">
+            <i class="fa-solid fa-retweet"></i>
+          </button>
+        </form>
+
+        <!-- Like -->
+        <form
+          method="post"
+          action="{% url 'likeTweet' %}"
+          class="row post-action"
+        >
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{tweet.id}}" />
+          <input type="hidden" name="where" value="{{request.path_info}}" >
+          {% if request.user in tweet.like.all %}
+          <button class="light-hover filled-action" title="View" type="submit">
+            <i class="fa-solid fa-heart"></i>
+          </button>
+          {% else %}
+          <button class="light-hover" title="View" type="submit">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          {% endif %}
+        </form>
+
+        <!-- Share -->
+        <div title="Share" class="post-action">
+          <a class="light-hover" href=""
+            ><i class="fa-solid fa-arrow-up-from-bracket"></i
+          ></a>
+        </div>
+      </div>
+      <!-- Post Actions End -->
+    </div>
+    <!-- Post Main end -->
+    <div class="hr1"></div>
+  </div>
+
+
+  <!-- Tweet Box -->
+  <form method="POST" action="">
+    {% csrf_token %}
+    <small style="margin-left: 70px;" class="placeholder-color" >Replying to <span class="primary-text" >@{{tweet.user}}</span></small>
+    <div class="tweet-box row" >
+      <img
+        src="{{request.user.avatar.url}}"
+        width="50px"
+        height="50px"
+        style="border-radius: 50%;margin: 10px;"
+      />
+      <div class="col" style="width: 87%; padding-right: 25px">
+        <textarea
+          class="texta"
+          placeholder="Tweet your reply"
+          name="content"
+          required
+        ></textarea>
+        <div class="actions row">
+          <div class="action row">
+            <button class="nav-logo" title="Media">
+              <i class="fa-regular fa-image"></i>
+            </button>
+            <button class="nav-logo" title="GIF">
+              <i
+                style="
+                  font-size: 7.5px;
+                  border: 2px solid var(--twitter-primary);
+                  border-radius: 5px;
+                  font-weight: bold;
+                "
+                >GIF</i
+              >
+            </button>
+            <button class="nav-logo" title="Emoji">
+              <i class="fa-regular fa-face-smile"></i>
+            </button>
+            <button class="nav-logo" disabled>
+              <i class="fa-solid fa-location-dot"></i>
+            </button>
+          </div>
+          <input type="submit" value="Reply" class="small-btn" />
+        </div>
+      </div>
+    </div>
+  </form>
+</main>
+
+{% endblock main %}

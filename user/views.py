@@ -14,8 +14,6 @@ def signup(request):
 def signupwithemail(request):
     context = {'title': 'Sign up for Twitter'}
     if request.method == "POST":
-        print(request.session['temp'])
-        print(request.session['step'])
         if request.session['step'] == 1:
             request.session['temp']['name'] = request.POST.get('name')
             request.session['temp']['email'] = request.POST.get('email')

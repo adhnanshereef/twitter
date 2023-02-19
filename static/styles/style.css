@@ -50,6 +50,10 @@ a:hover {
   text-decoration: underline;
 }
 
+no-decoration:hover{
+  text-decoration: none !important;
+}
+
 /* Button styles */
 button{
   cursor: pointer;
@@ -140,6 +144,39 @@ input[type="email"] {
 
 /* ------Default Classes------ */
 
+/* Back */
+.back{
+  color: var(--twitter-text);
+  text-decoration: none;
+  margin-left: 5px;
+  font-size: 15px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back:hover{
+  background: var(--twitter-hover);
+  text-decoration: none;
+}
+
+/* Text */
+.bold{
+  color: var(--twitter-text);
+  font-weight: bold;
+}
+
+.primary-text{
+  color: var(--twitter-primary);
+}
+
+.placeholder-color{
+  color: var(--twitter-placeholder);
+}
+
 /* row and column */
 .row {
   display: flex;
@@ -148,6 +185,10 @@ input[type="email"] {
 
 .between{
   justify-content: space-between;
+}
+
+.around{
+  justify-content: space-around;
 }
 
 .col {
@@ -188,6 +229,15 @@ input[type="email"] {
   color: var(--twitter-primary) !important;
   background: var(--twitter-light-blue);
   text-decoration: none;
+}
+
+.no-hover-bg:hover{
+  background: var(--twitter-background) !important;
+}
+
+/* Filled Actions */
+.filled-action{
+  color: var(--twitter-primary) !important;
 }
 
 /* Hr */

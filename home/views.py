@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Tweet
+from user.models import User
 from django.contrib.auth.decorators import login_required
 
 
 def home(request):
     tweets = Tweet.objects.all()
-    context = {'title': '', 'tweets': tweets}
+    domain = request.get_host()
+    context = {'title': '', 'tweets': tweets,"domain":domain}
     if request.user.is_authenticated:
         context['title'] = 'Home'
         return render(request, 'home/home/home.html', context)
@@ -14,6 +16,7 @@ def home(request):
         context['title'] = 'Explore'
         return render(request, 'home/home/home.html', context)
 
+# Tweet views start
 
 @login_required(login_url='login')
 def tweet(request):
@@ -23,11 +26,28 @@ def tweet(request):
         tweet.save()
         return redirect('home')
     context = {'title': 'Tweet'}
-    return render(request, 'home/tweet.html', context)
+    return render(request, 'home/tweet/tweet.html', context)
 
+def status(request,username,tweetid):
+    try:
+        user_checkup = User.objects.get(username=username)
+        tweet = Tweet.objects.get(id=tweetid)
+        user = tweet.user
+    except:
+        user_checkup=None
+        tweet=None
+        user=None
+    if user==None or tweet==None or user_checkup==None:
+        return HttpResponse('404')
+    if user_checkup != user:
+        return HttpResponse('404')
+    context={'title':f'{user.name} on Twitter: "{tweet.content[:20]}" / Twitter','tweet':tweet,'user':user}
+    return render(request, 'home/tweet/status.html',context)
 
 def like_tweet(request):
-    if request.method == 'POST' and request.user.is_authenticated:
+    if not request.user.is_authenticated:
+        return redirect('login')
+    if request.method == 'POST':
         tweet_id = request.POST.get('id')
         tweet = Tweet.objects.get(id=tweet_id)
         if request.user in tweet.like.all():
@@ -35,5 +55,9 @@ def like_tweet(request):
         else:
             tweet.like.add(request.user)
         tweet.save()
+        where=request.POST.get('where')
+        if where:
+            return redirect(where)
     return redirect('home')
 
+# Tweet views end

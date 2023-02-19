@@ -1,4 +1,4 @@
-<div class="row between post">
+<div class="row between post" onclick="location.href='{% url 'status' tweet.user tweet.id %}';">
   <img
     width="50"
     height="50"
@@ -55,9 +55,16 @@
       <form method="post" action="{% url 'likeTweet' %}" class="row post-action">
         {% csrf_token %}
         <input type="hidden" name="id" value="{{tweet.id}}" >
-        <button class="light-hover" title="Like" type="submit">
+        <input type="hidden" name="where" value="{{request.path_info}}" >
+        {% if request.user in tweet.like.all %}
+        <button class="light-hover filled-action" title="View" type="submit">
+          <i class="fa-solid fa-heart"></i>
+        </button>
+        {% else %}
+        <button class="light-hover" title="View" type="submit">
           <i class="fa-regular fa-heart"></i>
         </button>
+        {% endif %}
         <small>
           {% if tweet.like.all|length > 0 %} {{tweet.like.all|length}} {% endif %}
         </small>

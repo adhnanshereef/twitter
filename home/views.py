@@ -26,8 +26,10 @@ def profile(request, username):
         context['title'] = 'Profile'
         return HttpResponse('This account doesn’t exist')
     if user != None:
-        context = {'title': f"{user.name} (@{user.username})", 'user': user}
-        return render(request,'home/profile.html',context)
+        tweets = user.tweet_set.all()
+        context = {
+            'title': f"{user.name} (@{user.username})", 'user': user, 'tweets': tweets}
+        return render(request, 'home/profile.html', context)
     else:
         context['title'] = 'Profile'
         return HttpResponse('This account doesn’t exist')

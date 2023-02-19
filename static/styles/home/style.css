@@ -240,3 +240,25 @@
   color: var(--twitter-placeholder);
   font-weight: lighter;
 }
+
+
+/* Profile Styles Start */
+
+.profile-actions{
+  padding-top: 20px;
+}
+
+.profile-actions .profile-action{
+  background: none;
+  border: 1px solid var(--twitter-border);
+  color: var(--twitter-text);
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 50px;
+  margin-right: 10px;
+}
+

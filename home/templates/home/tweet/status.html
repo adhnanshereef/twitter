@@ -16,7 +16,7 @@
           alt=""
         />
         <div class="col post-header" style="margin-left: 10px">
-          <h4>{{tweet.user.name}}</h4>
+          <a href="{% url 'profile' tweet.user %}">{{tweet.user.name}}</a>
           <small style="margin: 0">@{{tweet.user}} </small>
         </div>
       </div>

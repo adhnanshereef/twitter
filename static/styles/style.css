@@ -235,6 +235,11 @@ input[type="email"] {
   background: var(--twitter-background) !important;
 }
 
+.hover-red:hover{
+  border-color: var(--twitter-danger) !important;
+  color: var(--twitter-danger) !important;
+}
+
 /* Filled Actions */
 .filled-action{
   color: var(--twitter-primary) !important;

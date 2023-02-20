@@ -26,7 +26,7 @@
     <a href="{% url 'home' %}" class="nav-sec">
       <i class="fa-solid fa-b"></i> <span>Twitter Blue</span>
     </a>
-    <a href="{% url 'home' %}" class="nav-sec">
+    <a href="{% url 'profile' request.user %}" class="nav-sec">
       <i class="fa-regular fa-user"></i> <span>Profile</span>
     </a>
     <button href="{% url 'home' %}" class="btn-a nav-sec">

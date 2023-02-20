@@ -10,4 +10,5 @@
   --twitter-hover: #edeeee; /* Background color for hover state on elements */
   --twitter-border: #c6d4df; /* Border color for elements */
   --twitter-placeholder: #536471; /* Placeholder text color */
+  --twitter-danger: #ff0040;
 }

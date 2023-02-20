@@ -9,7 +9,7 @@
   <div class="col post-main">
     <div class="row between align-y">
       <div class="row post-header">
-        <h4>{{tweet.user.name}}</h4>
+        <a href="{% url 'profile' tweet.user %}">{{tweet.user.name}}</a>
         <small class="row"
           >@{{tweet.user}} &nbsp
           <div class="dot"></div>

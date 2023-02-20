@@ -175,7 +175,7 @@
 }
 
 /* Tweet page */
-.tweet-container{
+.tweet-container {
   margin-top: 50px;
   padding: 15px 20px;
   background: var(--twitter-background);
@@ -199,9 +199,10 @@
   width: 89%;
 }
 
-.post-header h4 {
+.post-header a {
   font-weight: bold;
   font-size: 15px;
+  color: var(--twitter-text);
 }
 
 .post-header small {
@@ -218,10 +219,10 @@
   margin-top: 2px;
 }
 
-.post-actions{
+.post-actions {
   margin-left: -10px;
 }
-.post-action{
+.post-action {
   margin-right: 45px;
   width: max-content;
   font-size: 15px;
@@ -229,26 +230,26 @@
   background: none;
 }
 
-.post-action button, .post-action a{
+.post-action button,
+.post-action a {
   color: var(--twitter-placeholder);
   margin-right: 10px;
   background: none;
 }
 
-.post-action small{
+.post-action small {
   font-size: 14px;
   color: var(--twitter-placeholder);
   font-weight: lighter;
 }
 
-
 /* Profile Styles Start */
 
-.profile-actions{
-  padding-top: 20px;
+.profile-actions {
+  padding-top: 25px;
 }
 
-.profile-actions .profile-action{
+.profile-actions .profile-action {
   background: none;
   border: 1px solid var(--twitter-border);
   color: var(--twitter-text);
@@ -262,3 +263,20 @@
   margin-right: 10px;
 }
 
+.profile-actions .profile-action-btn {
+  background: none;
+  border: 1px solid var(--twitter-border);
+  color: var(--twitter-text);
+  padding: 5px 15px;
+  border-radius: 50px;
+  margin-right: 10px;
+}
+
+.profile-actions .profile-action:hover,
+.profile-actions .profile-action-btn:hover {
+  background: var(--twitter-hover);
+}
+
+.profile-actions:only-child:hover{
+  background: var(--twitter-hover);
+}

@@ -7,7 +7,8 @@
   --twitter-light-blue: #8ed4ff3c;
   --twitter-text: #ffffff; /* Text color for the interface */
   --twitter-btn: #263341; /* Background color for hover state on elements */
-  --twitter-hover: #1c2732; /* Background color for hover state on elements */
+  --twitter-hover: #162636d6; /* Background color for hover state on elements */
   --twitter-border: #657786; /* Border color for elements */
   --twitter-placeholder: #8b98a5; /* Placeholder text color */
+  --twitter-danger: #ff0040;
 }

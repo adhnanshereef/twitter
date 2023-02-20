@@ -9,6 +9,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=200)
     email = models.EmailField(unique=True)
     bio = models.TextField(blank=True)
+    following = models.ManyToManyField('self', related_name='folowing', blank=True, symmetrical=False)
+    followers = models.ManyToManyField('self', related_name='folower', blank=True, symmetrical=False)
     dateofbirth = models.CharField(max_length=100,blank=True,null=True)
     joined = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)

@@ -24,8 +24,6 @@ class TweetViews(models.Model):
     profile_visits = models.IntegerField(default=0)
 
 # Main Tweet Model
-
-
 class Tweet(models.Model):
     id = models.BigAutoField(primary_key=True, unique=True)
     content = models.TextField(null=True, max_length=500)

@@ -84,14 +84,39 @@ def signin(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            next_post=request.POST.get('next_url')
+            next_post = request.POST.get('next_url')
             if next_post:
                 return redirect(next_post)
             else:
                 return redirect('home')
-            
+
         else:
             messages.error(request, 'Password went wrong')
     next_url = request.GET.get('next')
-    context = {'title': 'Login in to Twitter','next':next_url}
+    context = {'title': 'Login in to Twitter', 'next': next_url}
     return render(request, 'user/login/login.html', context)
+
+
+def follow(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    if request.method == 'POST':
+        who = request.user
+        whom = User.objects.get(username=request.POST.get('whom'))
+        if who == whom:
+            return redirect('home')
+        if who in whom.followers.all() and whom in who.following.all():
+            whom.followers.remove(who)
+            who.following.remove(whom)
+        else:
+            whom.followers.add(who)
+            who.following.add(whom)
+        who.save()
+        whom.save()
+        who.refresh_from_db()
+        print(User.objects.get(username=who.username).following.all())
+        print(whom.followers.all())
+        if 'current_url' in request.POST:
+            return redirect(request.POST['current_url'])
+
+    return redirect('home')

@@ -28,16 +28,19 @@
       />
       {% if request.user == user %}
       <div class="row align-y between profile-actions" style="margin-top: 15px">
-        <button class="profile-action-btn">Set up profile</button>
+        <a href="{% url 'edit_profile' %}" class="profile-action-btn no-decoration">Edit profile</a>
       </div>
       {% else %}
       <div class="row align-y between profile-actions" style="margin-top: 10px">
+    {% if request.user.is_authenticated %}
+
         <button class="profile-action">
           <i class="fa-solid fa-ellipsis"></i>
         </button>
         <button class="profile-action">
           <i class="fa-regular fa-bell"></i>
         </button>
+        {% endif %}
         {% if user in request.user.following.all %}
         <form action="{% url 'follow' %}" method="POST" >
           {% csrf_token %}
@@ -50,7 +53,7 @@
           {% csrf_token %}
           <input type="hidden" name="current_url" value="{{request.path_info}}" >
           <input type="hidden" name="whom" value="{{user.username}}" >
-          <button type="submit" class="profile-action-btn hover-red">Follow</button>
+          <button type="submit" class="secondary-btn">Follow</button>
         </form>
         {% endif %}
       </div>

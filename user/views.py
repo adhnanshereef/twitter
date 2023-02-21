@@ -120,3 +120,9 @@ def follow(request):
             return redirect(request.POST['current_url'])
 
     return redirect('home')
+
+
+def edit(request):
+    user = request.user
+    context = {'title': f'{user.name} (@{user.username})', }
+    return render(request, 'user/profile/edit.html',context)

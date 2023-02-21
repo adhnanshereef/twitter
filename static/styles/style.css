@@ -6,7 +6,7 @@
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
 /* Basic Styles */
@@ -19,7 +19,7 @@ body {
 }
 
 /* Bg */
-.fixed-bg{
+.fixed-bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -29,7 +29,6 @@ body {
   height: 100vh;
   display: flex;
   justify-content: center;
-
 }
 
 /* Space */
@@ -50,12 +49,24 @@ a:hover {
   text-decoration: underline;
 }
 
-no-decoration:hover{
+.no-decoration {
+  text-decoration: none !important;
+}
+.no-decoration:hover {
   text-decoration: none !important;
 }
 
+.like-a{
+  color: var(--twitter-primary);
+  text-decoration: none;
+  background: none;
+}
+.like-a:hover {
+  text-decoration: underline;
+}
+
 /* Button styles */
-button{
+button {
   cursor: pointer;
 }
 
@@ -97,7 +108,7 @@ button{
   padding: 1px 2.5px;
 }
 
-.small-btn{
+.small-btn {
   width: 100px;
   padding: 10px;
   font-weight: bold;
@@ -107,7 +118,7 @@ button{
   cursor: pointer;
 }
 
-.secondary-btn{
+.secondary-btn {
   background: var(--twitter-text);
   color: var(--twitter-background) !important;
   font-weight: bold;
@@ -117,7 +128,7 @@ button{
   margin-right: 10px;
 }
 
-.non-btn{
+.non-btn {
   background: none;
   padding: 5px 10px;
   color: var(--twitter-primary);
@@ -129,7 +140,6 @@ button{
   background: var(--twitter-light-blue);
 }
 
-
 /* Form styles */
 
 label,
@@ -139,23 +149,35 @@ input[type="number"],
 input[type="email"] {
   display: block;
   font-size: 14px;
-  margin-bottom: 10px;
+}
+
+input::placeholder,textarea::placeholder{
+  color: var(--twitter-placeholder);
 }
 
 input[type="text"],
 input[type="password"],
 input[type="number"],
 input[type="email"] {
-  width: 100%;
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--twitter-border);
+}
+
+.input-gen{
+  padding: 10px 5px;
+  height: 30px;
+  border: 1px solid var(--twitter-border);
+  background: none;
+  resize: none;
+  margin: 10px 0px;
+  outline: none;
+  color: var(--twitter-text);
+  border-radius: 5px;
 }
 
 /* ------Default Classes------ */
 
 /* Back */
-.back{
+.back {
   color: var(--twitter-text);
   text-decoration: none;
   margin-left: 5px;
@@ -168,22 +190,22 @@ input[type="email"] {
   justify-content: center;
 }
 
-.back:hover{
+.back:hover {
   background: var(--twitter-hover);
   text-decoration: none;
 }
 
 /* Text */
-.bold{
+.bold {
   color: var(--twitter-text);
   font-weight: bold;
 }
 
-.primary-text{
+.primary-text {
   color: var(--twitter-primary);
 }
 
-.placeholder-color{
+.placeholder-color {
   color: var(--twitter-placeholder);
 }
 
@@ -193,11 +215,11 @@ input[type="email"] {
   flex-direction: row;
 }
 
-.between{
+.between {
   justify-content: space-between;
 }
 
-.around{
+.around {
   justify-content: space-around;
 }
 
@@ -208,25 +230,25 @@ input[type="email"] {
 
 /* alignment */
 
-.align{
+.align {
   justify-content: center;
   align-items: center;
 }
 
-.align-x{
+.align-x {
   justify-content: center;
 }
 
-.align-y{
+.align-y {
   align-items: center;
 }
 
 /* Hover */
-.hover:hover{
+.hover:hover {
   background: var(--twitter-hover);
 }
 
-.light-hover{
+.light-hover {
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -235,35 +257,35 @@ input[type="email"] {
   align-items: center;
 }
 
-.light-hover:hover{
+.light-hover:hover {
   color: var(--twitter-primary) !important;
   background: var(--twitter-light-blue);
   text-decoration: none;
 }
 
-.no-hover-bg:hover{
+.no-hover-bg:hover {
   background: var(--twitter-background) !important;
 }
 
-.hover-red:hover{
+.hover-red:hover {
   border-color: var(--twitter-danger) !important;
   color: var(--twitter-danger) !important;
 }
 
 /* Filled Actions */
-.filled-action{
+.filled-action {
   color: var(--twitter-primary) !important;
 }
 
 /* Hr */
-.hr1{
+.hr1 {
   width: 100%;
   height: 0px;
   border-bottom: 1px solid var(--twitter-border);
 }
 
 /* dot */
-.dot{
+.dot {
   width: 2.5px;
   height: 2.5px;
   background: var(--twitter-placeholder);

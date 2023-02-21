@@ -1,0 +1,66 @@
+{% extends 'index.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'styles/user/style.css' %}" />
+<div class="fixed-bg align-y">
+  <main class="settings-box col">
+    <form action="{% url 'edit_profile' %}" method="POST">
+      {% csrf_token %}
+      <!-- Header -->
+      <div class="settings-header">
+        <div class="row align-y">
+          <a title="close" class="back" href="{% url 'profile' user %}"
+            ><i class="fa-solid fa-xmark"></i
+          ></a>
+          <h2 style="font-size: 20px; font-weight: bold; margin-left: 13px">
+            Edit profile
+          </h2>
+        </div>
+        <button type="submit" class="secondary-btn">Save</button>
+      </div>
+      <img src="{% static 'images/banner.jpg' %}" width="100%" />
+      <div class="col" style="padding: 0 17px">
+        <div class="row align-y" style="margin-top: -60px">
+          <img
+            src="{{user.avatar.url}}"
+            width="135"
+            height="135"
+            style="
+              border-radius: 50%;
+              border: 4px solid var(--twitter-background);
+            "
+          />
+        </div>
+        <div class="col">
+          <input type="text" value="{{user.name}}" placeholder="Name" class="input-gen" name="name" />
+            <textarea name="bio" value="{{user.bio}}" placeholder="Bio" style="height: 60px;" class="input-gen"></textarea>
+          <input
+            type="text"
+            placeholder="Location"
+            class="input-gen"
+            name="location"
+            value="{{user.location}}"
+          />
+          <input
+            type="text"
+            placeholder="website"
+            class="input-gen"
+            name="website"
+            value="{{user.website}}"
+          />
+        </div>
+        <div class="col">
+          <div class="row align-y placeholder-color ">
+            <small>Birth date</small> &nbsp <div class="dot"></div>&nbsp <button class="like-a" >Edit</button>
+          </div>
+          <small>{{user.dateofbirth}}</small>
+        </div>
+
+      </div>
+      <!-- Space -->
+      <div style="height: 25px;" ></div>
+      <a href="" style="padding: 17px;width: 94%;color: var(--twitter-text);" class="hover no-decoration row between align-y"><span>Switch to professional</span> <i class="fa-solid fa-angle-right"></i></a>
+      <!-- Space -->
+      <div style="height: 75px;" ></div>
+    </form>
+  </main>
+</div>
+{% endblock content %}

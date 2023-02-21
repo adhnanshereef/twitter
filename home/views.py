@@ -29,9 +29,38 @@ def profile(request, username):
         tweets = user.tweet_set.all()
         context = {
             'title': f"{user.name} (@{user.username})", 'user': user, 'tweets': tweets}
-        return render(request, 'home/profile.html', context)
+        return render(request, 'home/profile/profile.html', context)
     else:
         context['title'] = 'Profile'
+        return HttpResponse('This account doesn’t exist')
+
+
+def followers(request, username):
+    try:
+        user = User.objects.get(username=username)
+    except:
+        context['title'] = 'Profile'
+        return HttpResponse('This account doesn’t exist')
+    if user != None:
+        followers = user.followers.all()
+        context = {
+        'title': f'People following {user.name} (@{user})', 'follows': followers, 'user': user}
+        return render(request, 'home/profile/followers.html',context)
+    else:
+        return HttpResponse('This account doesn’t exist')
+    
+def following(request, username):
+    try:
+        user = User.objects.get(username=username)
+    except:
+        context['title'] = 'Profile'
+        return HttpResponse('This account doesn’t exist')
+    if user != None:
+        following = user.following.all()
+        context = {
+        'title': f'People followed by {user.name} (@{user})', 'follows': following, 'user': user}
+        return render(request, 'home/profile/following.html',context)
+    else:
         return HttpResponse('This account doesn’t exist')
 
 

@@ -67,17 +67,19 @@
     <small class="placeholder-color" style="margin: 10px 0"
       ><i class="fa-regular fa-calendar-days"></i> Joined {{ user.joined|date:"F Y" }}</small
     >
-    <div class="row placeholder-color" style="margin-bottom: 10px">
-      <a href="" class="placeholder-color" style="margin-right: 17px"
+    <div class="row placeholder-color">
+      <a href="{% url 'following' user %}" class="placeholder-color" style="margin-right: 17px"
         ><span class="bold">{{user.following.all|length}}</span> Following</a
       >
-      <a href="" class="placeholder-color"
+      <a href="{% url 'followers' user %}" class="placeholder-color"
         ><span class="bold">{{user.followers.all|length}}</span> Followers</a
       >
     </div>
-    <small class="placeholder-color"
+    {% if request.user.is_authenticated %}
+    <small style="margin-top: 10px;" class="placeholder-color"
       >Not followed by anyone you’re following</small
     >
+    {% endif %}
 
     <!-- 20px padding -->
     <div style="height: 20px"></div>

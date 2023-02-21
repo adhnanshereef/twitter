@@ -107,6 +107,16 @@ button{
   cursor: pointer;
 }
 
+.secondary-btn{
+  background: var(--twitter-text);
+  color: var(--twitter-background) !important;
+  font-weight: bold;
+  color: var(--twitter-text);
+  padding: 6px 15px;
+  border-radius: 50px;
+  margin-right: 10px;
+}
+
 .non-btn{
   background: none;
   padding: 5px 10px;

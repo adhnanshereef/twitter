@@ -1,0 +1,113 @@
+{% include 'home/index.html' %} {% block main %} {% load static %}
+<main class="main">
+  <div class="main-header">
+    <div class="row align-y">
+      <a title="Back" class="back" href="{% url 'profile' user.username %}"
+        ><i class="fa-solid fa-arrow-left"></i
+      ></a>
+      <div style="margin: 5px 20px" class="col">
+        <h2 style="font-size: 15px; font-weight: bold">{{user.name}}</h2>
+        <small
+          style="
+            font-size: 12px;
+            font-weight: lighter;
+            color: var(--twitter-placeholder);
+          "
+          >@{{user}}</small
+        >
+      </div>
+    </div>
+    <div class="row">
+      <div
+        style="
+          width: 50%;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          height: 50px;
+        "
+        class="hover col"
+      >
+        <span
+          style="
+            width: max-content;
+            border-bottom: 3px solid var(--twitter-primary);
+            height: 50%;
+            border-radius: 4px;
+          "
+          >Followers</span
+        >
+      </div>
+      <div
+        style="
+          width: 50%;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          height: 50px;
+        "
+        class="hover"
+        onclick="location.href='{% url 'following' user %}';"
+      >
+        Following
+      </div>
+    </div>
+  </div>
+  <div style="height: 110px"></div>
+  <div class="col" style="width: 100%">
+    {% for follower in follows %}
+    <div class="row follow">
+      <img
+        width="43"
+        height="43"
+        src="{{follower.avatar.url}}"
+        style="border-radius: 50%; margin-right: 10px"
+      />
+      <div class="col" style="width: 87%">
+        <div class="row between">
+          <div class="col">
+            <a class="bold" href="{% url 'profile' follower.username %}"
+              >{{follower.name}}</a
+            >
+            <small class="placeholder-color">@{{follower}}</small>
+          </div>
+          {% if request.user.is_authenticated %} {% if follower in request.user.following.all %}
+          <form action="{% url 'follow' %}" method="POST">
+            {% csrf_token %}
+            <input
+              type="hidden"
+              name="current_url"
+              value="{{request.path_info}}"
+            />
+            <input type="hidden" name="whom" value="{{follower.username}}" />
+            <button type="submit" class="secondary-btn">
+              Following
+            </button>
+          </form>
+          {% else %}
+          <form action="{% url 'follow' %}" method="POST">
+            {% csrf_token %}
+            <input
+              type="hidden"
+              name="current_url"
+              value="{{request.path_info}}"
+            />
+            <input type="hidden" name="whom" value="{{follower.username}}" />
+            <button type="submit" class="secondary-btn">
+              Follow
+            </button>
+          </form>
+          {% endif %} {% endif %}
+        </div>
+        <p>
+          {{follower.bio}} Lorem ipsum dolor sit amet consectetur adipisicing
+          elit.
+        </p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div style="height: 600px"></div>
+</main>
+
+{% endblock main %}

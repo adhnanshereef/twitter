@@ -124,5 +124,14 @@ def follow(request):
 
 def edit(request):
     user = request.user
-    context = {'title': f'{user.name} (@{user.username})', }
+    if request.method=='POST':
+        name=request.POST['name']
+        bio=request.POST['bio']
+        user.name=name
+        user.bio=bio
+        user.save()
+        user.refresh_from_db()
+        return redirect('profile',username=user.username )
+    context = {'title': f'{user.name} (@{user.username})', 'user':user}
     return render(request, 'user/profile/edit.html',context)
+

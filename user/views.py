@@ -148,7 +148,6 @@ def edit(request):
             user.website=website
         except:
             messages.error(request, "Enter valid url")
-
         user.save()
         user.refresh_from_db()
         return redirect('profile',username=user.username )

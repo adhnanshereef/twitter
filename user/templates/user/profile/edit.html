@@ -31,7 +31,8 @@
         </div>
         <div class="col">
           <input type="text" value="{{user.name}}" placeholder="Name" class="input-gen" name="name" />
-            <textarea name="bio" value="{{user.bio}}" placeholder="Bio" style="height: 60px;" class="input-gen"></textarea>
+          <textarea name="bio" placeholder="Bio" style="height: 60px;" class="input-gen">{{ user.bio }}</textarea>
+
           <input
             type="text"
             placeholder="Location"

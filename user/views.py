@@ -124,5 +124,34 @@ def follow(request):
 
 def edit(request):
     user = request.user
-    context = {'title': f'{user.name} (@{user.username})', }
+    if request.method=='POST':
+        name=request.POST['name']
+        bio=request.POST['bio']
+        website=request.POST['website']
+        location=request.POST['location']
+        if len(name)<51:
+            user.name=name
+        else:
+            messages.error(request, "Name must be under 50 letters")
+
+        if len(bio)<161:
+            user.bio=bio
+        else:
+            messages.error(request, "Bio must be under 160 letters")
+
+        if len(location)<30:
+            user.location=location
+        else:
+            messages.error(request, "Bio must be under 30 letters")
+
+        try:
+            user.website=website
+        except:
+            messages.error(request, "Enter valid url")
+
+        user.save()
+        user.refresh_from_db()
+        return redirect('profile',username=user.username )
+    context = {'title': f'{user.name} (@{user.username})', 'user':user}
     return render(request, 'user/profile/edit.html',context)
+

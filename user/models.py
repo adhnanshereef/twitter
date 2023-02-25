@@ -1,14 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, UserManager, PermissionsMixin
+from django.core.validators import URLValidator
 
 # User Model
 
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=30, blank=False, unique=True)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
-    bio = models.TextField(blank=True)
+    bio = models.TextField(blank=True, max_length=160)
+    website = models.URLField(validators=[URLValidator()],blank=True)
+    location = models.CharField(max_length=30, blank=True)
     following = models.ManyToManyField('self', related_name='folowing', blank=True, symmetrical=False)
     followers = models.ManyToManyField('self', related_name='folower', blank=True, symmetrical=False)
     dateofbirth = models.CharField(max_length=100,blank=True,null=True)

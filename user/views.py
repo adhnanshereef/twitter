@@ -162,3 +162,14 @@ def edit(request):
         return redirect('profile', username=user.username)
     context = {'title': f'{user.name} (@{user.username})', 'user': user}
     return render(request, 'user/profile/edit.html', context)
+
+
+def edit_banner(request):
+    user = request.user
+    if request.method == 'POST':
+        banner = request.POST['banner']
+        user.banner = banner
+        user.save()
+        user.refresh_from_db()
+    return redirect('edit_profile')
+    

@@ -16,7 +16,54 @@
         </div>
         <button type="submit" class="secondary-btn">Save</button>
       </div>
-      <img src="{% static 'images/banner.jpg' %}" width="100%" />
+
+      <!-- Banner -->
+      <div
+        class="banner-input align row"
+        style="
+          width: 100%;
+          background: url({{user.banner.url}});
+          height: 150px;
+          background-position: center;
+          background-size: contain;
+        "
+      >
+        <div class="row align-y">
+          <i id="cameraIcon" class="fas fa-camera"></i>
+          <div style="width: 20px"></div>
+          <i class="fas fa-upload"></i>
+            <input
+              id="bannerInput"
+              style="display: none"
+              type="file"
+              name="banner"
+              oninput=""
+            />
+          </form>
+          <img width="100%" id="bannerImage" />
+        </div>
+      </div>
+
+      <script>
+        let cameraIcon = document.getElementById("cameraIcon");
+        let bannerImage = document.getElementById("bannerImage");
+
+        cameraIcon.addEventListener("click", () => {
+          document.getElementById("bannerInput").click();
+        });
+
+        document
+          .getElementById("bannerInput")
+          .addEventListener("change", () => {
+            let inputImage =
+              document.querySelector("input[type=file]").files[0];
+            let reader = new FileReader();
+            reader.onload = () => {
+              bannerImage.src = reader.result;
+            };
+            reader.readAsDataURL(inputImage);
+          });
+      </script>
       <div class="col" style="padding: 0 17px">
         <div class="row align-y" style="margin-top: -60px">
           <img
@@ -30,8 +77,21 @@
           />
         </div>
         <div class="col">
-          <input type="text" value="{{user.name}}" placeholder="Name" class="input-gen" name="name" />
-          <textarea name="bio" placeholder="Bio" style="height: 60px;" class="input-gen">{{ user.bio }}</textarea>
+          <input
+            type="text"
+            value="{{user.name}}"
+            placeholder="Name"
+            class="input-gen"
+            name="name"
+          />
+          <textarea
+            name="bio"
+            placeholder="Bio"
+            style="height: 60px"
+            class="input-gen"
+          >
+{{ user.bio }}</textarea
+          >
 
           <input
             type="text"
@@ -49,18 +109,25 @@
           />
         </div>
         <div class="col">
-          <div class="row align-y placeholder-color ">
-            <small>Birth date</small> &nbsp <div class="dot"></div>&nbsp <button class="like-a" >Edit</button>
+          <div class="row align-y placeholder-color">
+            <small>Birth date</small> &nbsp
+            <div class="dot"></div>
+            &nbsp <button class="like-a">Edit</button>
           </div>
           <small>{{user.dateofbirth}}</small>
         </div>
-
       </div>
       <!-- Space -->
-      <div style="height: 25px;" ></div>
-      <a href="" style="padding: 17px;width: 94%;color: var(--twitter-text);" class="hover no-decoration row between align-y"><span>Switch to professional</span> <i class="fa-solid fa-angle-right"></i></a>
+      <div style="height: 25px"></div>
+      <a
+        href=""
+        style="padding: 17px; width: 94%; color: var(--twitter-text)"
+        class="hover no-decoration row between align-y"
+        ><span>Switch to professional</span>
+        <i class="fa-solid fa-angle-right"></i
+      ></a>
       <!-- Space -->
-      <div style="height: 75px;" ></div>
+      <div style="height: 75px"></div>
     </form>
   </main>
 </div>

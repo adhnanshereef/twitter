@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{% static 'styles/user/style.css' %}" />
 <div class="fixed-bg align-y">
   <main class="settings-box col">
-    <form action="{% url 'edit_profile' %}" method="POST">
+    <form action="{% url 'edit_profile' %}" method="POST" enctype="multipart/form-data" >
       {% csrf_token %}
       <!-- Header -->
       <div class="settings-header">
@@ -19,34 +19,32 @@
 
       <!-- Banner -->
       <div
-        class="banner-input align row"
+        class="align row"
+        id="banner-upload"
         style="
           width: 100%;
           background: url({{user.banner.url}});
-          height: 150px;
+          height: 170px;
           background-position: center;
           background-size: contain;
         "
       >
         <div class="row align-y">
           <i id="cameraIcon" class="fas fa-camera"></i>
-          <div style="width: 20px"></div>
+          <div style="width: 50px"></div>
           <i class="fas fa-upload"></i>
-            <input
-              id="bannerInput"
-              style="display: none"
-              type="file"
-              name="banner"
-              oninput=""
-            />
-          </form>
-          <img width="100%" id="bannerImage" />
+          <input
+            id="bannerInput"
+            style="display: none"
+            type="file"
+            name="banner"
+          />
         </div>
       </div>
 
       <script>
         let cameraIcon = document.getElementById("cameraIcon");
-        let bannerImage = document.getElementById("bannerImage");
+        let bannerBg = document.getElementById("banner-upload");
 
         cameraIcon.addEventListener("click", () => {
           document.getElementById("bannerInput").click();
@@ -56,10 +54,14 @@
           .getElementById("bannerInput")
           .addEventListener("change", () => {
             let inputImage =
-              document.querySelector("input[type=file]").files[0];
+              document.getElementById("bannerInput").files[0];
             let reader = new FileReader();
             reader.onload = () => {
-              bannerImage.src = reader.result;
+              bannerBg.style.background = `url(${reader.result})`;
+              bannerBg.style.width='100%'
+              bannerBg.style.height= '150px';
+              bannerBg.style.backgroundPosition= 'center';
+              bannerBg.style.backgroundSize= 'contain';
             };
             reader.readAsDataURL(inputImage);
           });
@@ -67,6 +69,7 @@
       <div class="col" style="padding: 0 17px">
         <div class="row align-y" style="margin-top: -60px">
           <img
+          id="imageIcon"
             src="{{user.avatar.url}}"
             width="135"
             height="135"
@@ -75,7 +78,32 @@
               border: 4px solid var(--twitter-background);
             "
           />
+          <input
+          id="avatarInput"
+          style="display: none"
+          type="file"
+          name="avatar"
+        />
         </div>
+        <script>
+          let imageIcon = document.getElementById("imageIcon");
+  
+          imageIcon.addEventListener("click", () => {
+            document.getElementById("avatarInput").click();
+          });
+  
+          document
+            .getElementById("avatarInput")
+            .addEventListener("change", () => {
+              let inputImage =
+                document.getElementById("avatarInput").files[0];
+              let reader = new FileReader();
+              reader.onload = () => {
+                imageIcon.src = reader.result;
+              };
+              reader.readAsDataURL(inputImage);
+            });
+        </script>
         <div class="col">
           <input
             type="text"

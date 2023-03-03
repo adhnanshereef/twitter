@@ -18,7 +18,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     joined = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     avatar = models.ImageField(upload_to='avatar/', null=True, default="avatar/avatar.svg")
-    banner = models.ImageField(upload_to='banner/', null=True, default="banners/banner.jpg")
+    banner = models.ImageField(upload_to='banner/', null=True, default="banner/banner.jpg")
     theme = models.CharField(max_length=10, blank=True, default='light')
     is_staff = models.BooleanField(blank=True,null=True)
     is_superuser = models.BooleanField(blank=True,null=True)

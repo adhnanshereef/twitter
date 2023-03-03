@@ -123,8 +123,6 @@ def follow(request):
         who.save()
         whom.save()
         who.refresh_from_db()
-        print(User.objects.get(username=who.username).following.all())
-        print(whom.followers.all())
         if 'current_url' in request.POST:
             return redirect(request.POST['current_url'])
 
@@ -138,6 +136,12 @@ def edit(request):
         bio = request.POST['bio']
         website = request.POST['website']
         location = request.POST['location']
+        avatar = request.FILES.get('avatar')
+        banner = request.FILES.get('banner')
+        if avatar:
+            user.avatar = avatar
+        if banner:
+            user.banner = banner
         if len(name) < 51:
             user.name = name
         else:
@@ -151,25 +155,17 @@ def edit(request):
         if len(location) < 30:
             user.location = location
         else:
-            messages.error(request, "Bio must be under 30 letters")
+            messages.error(request, "Location must be under 30 letters")
 
         if is_valid_url(website):
             user.website = website
         else:
             messages.error(request, "Enter valid url")
+
         user.save()
         user.refresh_from_db()
         return redirect('profile', username=user.username)
+
     context = {'title': f'{user.name} (@{user.username})', 'user': user}
     return render(request, 'user/profile/edit.html', context)
 
-
-def edit_banner(request):
-    user = request.user
-    if request.method == 'POST':
-        banner = request.POST['banner']
-        user.banner = banner
-        user.save()
-        user.refresh_from_db()
-    return redirect('edit_profile')
-    

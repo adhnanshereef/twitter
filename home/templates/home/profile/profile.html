@@ -17,9 +17,17 @@
     </div>
   </div>
   <div style="height: 51px"></div>
-  <img src="{% static 'images/banner.jpg' %}" width="100%" />
+  <div 
+  style="
+          width: 100%;
+          background: url({{user.banner.url}});
+          height: 170px;
+          background-position: center;
+          background-size: contain;
+        "
+   ></div>
   <div class="col" style="padding: 0 17px">
-    <div class="row align-y between" style="margin-top: -75px">
+    <div class="row align-y between" style="margin-top: -70px">
       <img
         src="{{user.avatar.url}}"
         width="135"

@@ -6,6 +6,5 @@ urlpatterns = [
     path('login/', views.signin, name='login'),
     path('logout/', views.signout, name='logout'),
     path('settings/profile/', views.edit, name='edit_profile'),
-    path('settings/profile/banner/', views.edit_banner, name='edit_profile_banner'),
     path('akjbfalsdfakjsdgfsdgkashdfkjahsdlfjasdfhkajsdfkjasgdfkaglsdgjgalsdflsdsfasd/follow/', views.follow, name='follow'),
 ]

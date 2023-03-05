@@ -159,6 +159,8 @@ def edit(request):
 
         if is_valid_url(website):
             user.website = website
+        elif website=="":
+            ...
         else:
             messages.error(request, "Enter valid url")
 
@@ -168,4 +170,5 @@ def edit(request):
 
     context = {'title': f'{user.name} (@{user.username})', 'user': user}
     return render(request, 'user/profile/edit.html', context)
+
 

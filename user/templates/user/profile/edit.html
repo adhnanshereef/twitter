@@ -32,7 +32,7 @@
         <div class="row align-y">
           <i id="cameraIcon" class="fas fa-camera"></i>
           <div style="width: 50px"></div>
-          <i class="fas fa-upload"></i>
+          <i id="removeBanner" class="fas fa-x"></i>
           <input
             id="bannerInput"
             style="display: none"
@@ -59,12 +59,24 @@
             reader.onload = () => {
               bannerBg.style.background = `url(${reader.result})`;
               bannerBg.style.width='100%'
-              bannerBg.style.height= '150px';
+              bannerBg.style.height= '170px';
               bannerBg.style.backgroundPosition= 'center';
               bannerBg.style.backgroundSize= 'contain';
             };
             reader.readAsDataURL(inputImage);
           });
+        let removeBanner = document.getElementById("removeBanner");
+removeBanner.addEventListener("click", () => {
+  let bannerInput = document.getElementById("bannerInput");
+  bannerInput.value = ""; // clear the value of the input field
+  bannerBg.style.background = `url({{user.banner.url}})`;
+  bannerBg.style.width='100%';
+  bannerBg.style.height= '170px';
+  bannerBg.style.backgroundPosition= 'center';
+  bannerBg.style.backgroundSize= 'contain';
+});
+
+
       </script>
       <div class="col" style="padding: 0 17px">
         <div class="row align-y" style="margin-top: -60px">

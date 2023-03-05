@@ -1,0 +1,8 @@
+{% extends "index.html" %}
+{% load socialaccount %}
+
+{% block content %}
+    <h2>Login with {{ account_provider }}</h2>
+    {% providers_media_js %}
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+{% endblock %}

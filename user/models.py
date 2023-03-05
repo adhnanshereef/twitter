@@ -1,6 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, UserManager, PermissionsMixin
 from django.core.validators import URLValidator
+import os
+import uuid
+from django.conf import settings
+import urllib.request
+
+# Url to image
+# def download_image(url):
+#     # Download the image and return the filename to use
+#     # You can use any logic you want here to generate the filename
+#     filename = str(uuid.uuid4()) + '.jpg'
+#     urllib.request.urlretrieve(url, os.path.join(settings.MEDIA_ROOT, 'avatar', filename))
+#     return os.path.join('images', filename)
 
 # User Model
 
@@ -14,7 +26,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     location = models.CharField(max_length=30, blank=True)
     following = models.ManyToManyField('self', related_name='folowing', blank=True, symmetrical=False)
     followers = models.ManyToManyField('self', related_name='folower', blank=True, symmetrical=False)
-    dateofbirth = models.CharField(max_length=100,blank=True,null=True)
+    dateofbirth = models.DateField(blank=True , null=True)
     joined = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     avatar = models.ImageField(upload_to='avatar/', null=True, default="avatar/avatar.svg")

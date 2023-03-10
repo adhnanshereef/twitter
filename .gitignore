@@ -12,8 +12,8 @@ static/images/tweets/*
 **/__pycache__/*
 
 # Ignore Django Migrations
-**/migrations/*.py[cod]
-**/migrations/*/*.py[cod]
+**/migrations/*.py
+**/migrations/*/*.py
 **/migrations/*/__pycache__/
 **/migrations/*/*/__pycache__/
 !**/migrations/__init__.py

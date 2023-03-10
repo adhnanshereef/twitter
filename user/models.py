@@ -4,18 +4,14 @@ from django.core.validators import URLValidator
 import os
 import uuid
 from django.conf import settings
-import urllib.request
 
-# Url to image
-# def download_image(url):
-#     # Download the image and return the filename to use
-#     # You can use any logic you want here to generate the filename
-#     filename = str(uuid.uuid4()) + '.jpg'
-#     urllib.request.urlretrieve(url, os.path.join(settings.MEDIA_ROOT, 'avatar', filename))
-#     return os.path.join('images', filename)
 
-# User Model
 
+# To get random name avatar file
+def avatar_filename(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f'{uuid.uuid4()}.{ext}'
+    return os.path.join('avatar/', filename)
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=30, blank=False, unique=True)
@@ -29,7 +25,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     dateofbirth = models.DateField(blank=True , null=True)
     joined = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
-    avatar = models.ImageField(upload_to='avatar/', null=True, default="avatar/avatar.svg")
+    avatar = models.ImageField(upload_to=avatar_filename, null=True, default="avatar/avatar.svg")
     banner = models.ImageField(upload_to='banner/', null=True, default="banner/banner.jpg")
     theme = models.CharField(max_length=10, blank=True, default='light')
     is_staff = models.BooleanField(blank=True,null=True)
@@ -40,3 +36,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
+    
+    def delete(self, *args, **kwargs):
+        if self.avatar.url != settings.MEDIA_URL + 'avatar/avatar.svg':
+            self.avatar.delete()
+        super().delete(*args, **kwargs)
+

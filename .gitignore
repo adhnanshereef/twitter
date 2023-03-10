@@ -1,1 +1,5 @@
 db.sqlite3
+static/images/avatar/*
+!static/images/avatar/avatar.svg
+static/images/banner/*
+!static/images/banner/banner.jpg

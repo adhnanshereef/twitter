@@ -1,4 +1,4 @@
-# Datebase
+# Database
 db.sqlite3
 
 # User Avatar and Banner Image
@@ -8,13 +8,12 @@ static/images/banner/*
 !static/images/banner/banner.jpg
 static/images/tweets/*
 
-# __pycache__
-twitter/__pycache__/*
-user/__pycache__/*
-home/__pycache__/*
+# Ignore Python byte-compiled files
+**/__pycache__/*
 
-# Migrations user and home
-user/migrations/*
-!user/migrations/__init__.py
-home/migrations/*
-!home/migrations/__init__.py
+# Ignore Django Migrations
+**/migrations/*.py[cod]
+**/migrations/*/*.py[cod]
+**/migrations/*/__pycache__/
+**/migrations/*/*/__pycache__/
+!**/migrations/__init__.py

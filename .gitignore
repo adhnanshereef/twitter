@@ -6,12 +6,15 @@ static/images/avatar/*
 !static/images/avatar/avatar.svg
 static/images/banner/*
 !static/images/banner/banner.jpg
+static/images/tweets/*
 
-# Migrations
+# __pycache__
+twitter/__pycache__/*
+user/__pycache__/*
+home/__pycache__/*
+
+# Migrations user and home
 user/migrations/*
-!user/migrations/__pycache__
 !user/migrations/__init__.py
 home/migrations/*
-!home/migrations/__pycache__
 !home/migrations/__init__.py
-

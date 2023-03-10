@@ -5,6 +5,8 @@ from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from urllib.parse import urlparse
 from .models import User
+from django.conf import settings
+from datetime import datetime
 
 
 def signup(request):
@@ -59,8 +61,10 @@ def signupwithemail(request):
                     request, 'Email already exist! Please use another one')
                 return render(request, 'user/signup/step3.html')
             else:
+                dob = datetime.strptime(data['date'], '%b %d, %Y').date()
                 user = User.objects.create(name=data['name'], email=data['email'], username=username,
-                                           dateofbirth=data['date'], password=password)
+                                           dateofbirth=dob, password=password)
+                user.backend = 'django.contrib.auth.backends.ModelBackend'
                 request.session.clear()
                 login(request, user)
                 return redirect('home')
@@ -137,11 +141,17 @@ def edit(request):
         website = request.POST['website']
         location = request.POST['location']
         avatar = request.FILES.get('avatar')
+        doesRemove = request.POST['doesRemove']
         banner = request.FILES.get('banner')
+
         if avatar:
+            if user.avatar.url != settings.MEDIA_URL + 'avatar/avatar.svg':
+                user.avatar.delete()
             user.avatar = avatar
         if banner:
             user.banner = banner
+        if doesRemove == 'yes':
+            user.banner = "banner/banner.jpg"
         if len(name) < 51:
             user.name = name
         else:
@@ -159,7 +169,7 @@ def edit(request):
 
         if is_valid_url(website):
             user.website = website
-        elif website=="":
+        elif website == "":
             ...
         else:
             messages.error(request, "Enter valid url")
@@ -170,5 +180,3 @@ def edit(request):
 
     context = {'title': f'{user.name} (@{user.username})', 'user': user}
     return render(request, 'user/profile/edit.html', context)
-
-

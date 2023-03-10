@@ -12,13 +12,18 @@
     <div class="form-main">
       <h1 class="form-title">Join Twitter today</h1>
       <div class="form-padding"></div>
-      <a class="g-sign">
-        <img
-          src="{% static 'images\assets\logos\Google-G-Logo.png' %}"
-          width="25px"
-        />
-        &nbsp Sign up with Google</a
-      >
+     <!-- Signup with Google -->
+     {% load socialaccount %}
+     <form action="{% provider_login_url 'google' %}" method="POST" >
+       {% csrf_token %}
+        <button type="submit" style="width: 100%;" class="g-sign">
+          <img
+            src="{% static 'images\assets\logos\Google-G-Logo.png' %}"
+            width="25px"
+          />
+          &nbsp Sign up with Google</button
+        >
+      </form>
       <div class="form-padding"></div>
       <a class="apple-sign">
         <img

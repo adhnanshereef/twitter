@@ -2,7 +2,11 @@
 <link rel="stylesheet" href="{% static 'styles/user/style.css' %}" />
 <div class="fixed-bg align-y">
   <main class="settings-box col">
-    <form action="{% url 'edit_profile' %}" method="POST" enctype="multipart/form-data" >
+    <form
+      action="{% url 'edit_profile' %}"
+      method="POST"
+      enctype="multipart/form-data"
+    >
       {% csrf_token %}
       <!-- Header -->
       <div class="settings-header">
@@ -39,6 +43,7 @@
             type="file"
             name="banner"
           />
+          <input id="doesRemove" type="hidden" name="doesRemove" value="no" >
         </div>
       </div>
 
@@ -53,35 +58,39 @@
         document
           .getElementById("bannerInput")
           .addEventListener("change", () => {
-            let inputImage =
-              document.getElementById("bannerInput").files[0];
+            let inputImage = document.getElementById("bannerInput").files[0];
             let reader = new FileReader();
             reader.onload = () => {
               bannerBg.style.background = `url(${reader.result})`;
-              bannerBg.style.width='100%'
-              bannerBg.style.height= '170px';
-              bannerBg.style.backgroundPosition= 'center';
-              bannerBg.style.backgroundSize= 'contain';
+              bannerBg.style.width = "100%";
+              bannerBg.style.height = "170px";
+              bannerBg.style.backgroundPosition = "center";
+              bannerBg.style.backgroundSize = "contain";
             };
             reader.readAsDataURL(inputImage);
           });
         let removeBanner = document.getElementById("removeBanner");
-removeBanner.addEventListener("click", () => {
-  let bannerInput = document.getElementById("bannerInput");
-  bannerInput.value = ""; // clear the value of the input field
-  bannerBg.style.background = `url({{user.banner.url}})`;
-  bannerBg.style.width='100%';
-  bannerBg.style.height= '170px';
-  bannerBg.style.backgroundPosition= 'center';
-  bannerBg.style.backgroundSize= 'contain';
-});
-
-
+        removeBanner.addEventListener("click", () => {
+          let bannerInput = document.getElementById("bannerInput");
+          if (bannerInput.value == "") {
+            document.getElementById("doesRemove").value = "yes";
+            bannerBg.style.background = `url({% static 'images/banner/banner.jpg' %})`;
+            bannerInput.value = ""; // clear the value of the input field
+          } else {
+            console.log('reached else')
+            bannerInput.value = ""; // clear the value of the input field
+            bannerBg.style.background = `url({{user.banner.url}})`;
+          }
+          bannerBg.style.width = "100%";
+          bannerBg.style.height = "170px";
+          bannerBg.style.backgroundPosition = "center";
+          bannerBg.style.backgroundSize = "contain";
+        });
       </script>
       <div class="col" style="padding: 0 17px">
         <div class="row align-y" style="margin-top: -60px">
           <img
-          id="imageIcon"
+            id="imageIcon"
             src="{{user.avatar.url}}"
             width="135"
             height="135"
@@ -91,24 +100,23 @@ removeBanner.addEventListener("click", () => {
             "
           />
           <input
-          id="avatarInput"
-          style="display: none"
-          type="file"
-          name="avatar"
-        />
+            id="avatarInput"
+            style="display: none"
+            type="file"
+            name="avatar"
+          />
         </div>
         <script>
           let imageIcon = document.getElementById("imageIcon");
-  
+
           imageIcon.addEventListener("click", () => {
             document.getElementById("avatarInput").click();
           });
-  
+
           document
             .getElementById("avatarInput")
             .addEventListener("change", () => {
-              let inputImage =
-                document.getElementById("avatarInput").files[0];
+              let inputImage = document.getElementById("avatarInput").files[0];
               let reader = new FileReader();
               reader.onload = () => {
                 imageIcon.src = reader.result;

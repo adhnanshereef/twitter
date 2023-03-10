@@ -1,5 +1,17 @@
+# Datebase
 db.sqlite3
+
+# User Avatar and Banner Image
 static/images/avatar/*
 !static/images/avatar/avatar.svg
 static/images/banner/*
 !static/images/banner/banner.jpg
+
+# Migrations
+user/migrations/*
+!user/migrations/__pycache__
+!user/migrations/__init__.py
+home/migrations/*
+!home/migrations/__pycache__
+!home/migrations/__init__.py
+

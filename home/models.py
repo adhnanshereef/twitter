@@ -1,9 +1,23 @@
 from django.db import models
 from user.models import User
+import os
+import uuid
 
-# Image of Tweet
-class TweetImage(models.Model):
-    image = models.ImageField(upload_to='tweets/')
+# To get random name for Medias in Tweet
+def tweetmedia_filename(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f'{uuid.uuid4()}.{ext}'
+    return os.path.join('tweets/', filename)
+    
+
+# Media in Tweet
+class TweetMedia(models.Model):
+    media = models.FileField(upload_to=tweetmedia_filename)
+    ext = models.CharField(null=True, blank=True, max_length=100)
+    def delete(self, *args, **kwargs):
+        self.media.delete()
+        super().delete(*args, **kwargs)
+
 
 # reply for Tweet
 class TweetReply(models.Model):
@@ -12,6 +26,7 @@ class TweetReply(models.Model):
     like = models.IntegerField(default=0)
     retweet = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
+
 
 # Views of Tweet
 class TweetViews(models.Model):
@@ -22,19 +37,18 @@ class TweetViews(models.Model):
     new_follower = models.IntegerField(default=0)
     profile_visits = models.IntegerField(default=0)
 
+
 # Main Tweet Model
 class Tweet(models.Model):
     id = models.BigAutoField(primary_key=True, unique=True)
     content = models.TextField(null=True, max_length=500)
+    medias = models.ManyToManyField(
+        TweetMedia, related_name='medias', blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    images = models.ManyToManyField(
-        TweetImage, related_name='images', blank=True)
-    like = models.ManyToManyField(
-        User, related_name='like', blank=True)
+    like = models.ManyToManyField(User, related_name='like', blank=True)
     reply = models.ManyToManyField(
-        TweetReply, related_name='comments', blank=True)
-    retweet = models.ManyToManyField(
-        User, related_name='retweet', blank=True)
+        TweetReply, related_name='reply', blank=True)
+    retweet = models.ManyToManyField(User, related_name='retweet', blank=True)
     views = models.ManyToManyField(
         TweetViews, related_name='views', blank=True)
     created = models.DateTimeField(auto_now_add=True)

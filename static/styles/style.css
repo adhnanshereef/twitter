@@ -39,6 +39,10 @@ body {
   height: 10px;
 }
 
+.height-10{
+  height: 10px;
+}
+
 /* Set link styles */
 a {
   color: var(--twitter-primary);
@@ -290,6 +294,11 @@ input[type="email"] {
   height: 2.5px;
   background: var(--twitter-placeholder);
   border-radius: 50%;
+}
+
+/* Border */
+.border-radius-15{
+  border-radius: 15px;
 }
 
 /* close btn a */

@@ -22,7 +22,9 @@
     ></script>
 
     <!-- Javascript -->
+    <script src="{% static 'javascript/script.js' %}"></script>
     
+
     <!-- Essentials -->
     <link
     rel="shortcut icon"
@@ -45,12 +47,11 @@
     {% for message in messages %}
     
     <div class="alert alert-success">
-      <a class="close" href="#" data-dismiss="alert">×</a>
+      <a class="close" href="" data-dismiss="alert">×</a>
       {{ message }}
     </div>
     
     {% endfor %} {% block content %} {% endblock content %}
   </body>
-  <script src="{% static 'javascript/script.js' %}"></script>
   </html>
   

@@ -1,8 +1,18 @@
 {% include 'home/index.html' %} {% block main %} {% load static %}
 <div class="fixed-bg">
   <main class="tweet-container col">
-    <a title="Close" class="close-a" style="font-size: 15px;" href="{% url 'home' %}"><i class="fa-solid fa-x"></i></a>
-    <form method="POST" action="{% url 'tweet' %}">
+    <a
+      title="Close"
+      class="close-a"
+      style="font-size: 15px"
+      href="{% url 'home' %}"
+      ><i class="fa-solid fa-x"></i
+    ></a>
+    <form
+      method="POST"
+      action="{% url 'tweet' %}"
+      enctype="multipart/form-data"
+    >
       {% csrf_token %}
       <div class="row">
         <img
@@ -12,22 +22,102 @@
           style="border-radius: 50%; margin: 10px"
         />
         <div class="col" style="width: 87%; padding-right: 25px">
+          <!-- Content Textarea -->
           <textarea
             class="texta"
             placeholder="What's happening?"
             name="content"
-            style="min-height: 30px;height: 100px;"
+            style="min-height: 30px; max-height: 300px"
             required
           ></textarea>
+
+          <script>
+            const textarea = document.querySelector(".texta");
+
+            textarea.addEventListener("input", function () {
+              this.style.height = "auto";
+              this.style.height = this.scrollHeight + "px";
+            });
+          </script>
+
+          <!-- Image Container -->
+          <div
+            class="col"
+            id="mediaContainer"
+            style="max-height: 300px; overflow: auto; width: 100%"
+          ></div>
+
           <button class="non-btn" style="margin: 10px 0">
             <i class="fa-solid fa-earth-americas"></i> Every one can reply
           </button>
           <div style="width: 98%" class="hr1"></div>
+
+          <!-- ----Actions---- -->
           <div class="actions row">
             <div class="action row">
-              <button class="nav-logo" title="Media">
+              <!-- Media -->
+              <button
+                class="nav-logo"
+                type="button"
+                id="mediaUpload"
+                title="Media"
+              >
                 <i class="fa-regular fa-image"></i>
               </button>
+
+              <input
+                type="file"
+                style="display: none"
+                name="medias"
+                id="mediaInput"
+                multiple
+              />
+
+              <script>
+                const mediaUploadButton =
+                  document.getElementById("mediaUpload");
+                const mediaInput = document.getElementById("mediaInput");
+                const mediaContainer =
+                  document.getElementById("mediaContainer");
+
+                mediaUploadButton.addEventListener("click", function () {
+                  mediaInput.click();
+                  event.preventDefault();
+                });
+
+                mediaInput.addEventListener("change", function () {
+                  const files = mediaInput.files;
+
+                  // loop through the selected files and create an img element for each file
+                  for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+
+                    // check if the file is an image
+                    if (file.type.startsWith("image/")) {
+                      const img = document.createElement("img");
+                      img.src = URL.createObjectURL(file);
+                      img.style.width = "100%";
+                      img.style.borderRadius = "15px";
+                      img.style.marginBottom = "10px";
+                      mediaContainer.appendChild(img);
+
+                      // check if the file is a video
+                    } else if (file.type.startsWith("video/")) {
+                      const video = document.createElement("video");
+                      video.src = URL.createObjectURL(file);
+                      video.style.width = "100%";
+                      video.style.borderRadius = "15px";
+                      video.style.marginBottom = "10px";
+                      video.controls = true; // add playback controls to the video player
+                      mediaContainer.appendChild(video);
+                    } else {
+                      alert("unsupported file");
+                    }
+                  }
+                });
+              </script>
+
+              <!-- Gif -->
               <button class="nav-logo" title="GIF">
                 <i
                   style="

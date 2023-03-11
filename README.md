@@ -10,7 +10,7 @@
 2. Change directory to project folder `cd twitter`
 3. Install Virtual Environment `pip install virtualenv`
 4. Create Virtual Environment `python -m virtualenv env`
-5. Use Virtual Environment `./env/Scripts/activate`
+5. Use Virtual Environment `"./env/Scripts/activate"`
 6. Install Django `pip install Django`
 7. Install Pillow `pip install Pillow`
 8. Install alluth essentials for google authentication `pip install django-allauth google-auth google-auth-oauthlib google-auth-httplib2`

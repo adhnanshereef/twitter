@@ -1,6 +1,9 @@
 from django.db import models
 from user.models import User
 
+# Image of Tweet
+class TweetImage(models.Model):
+    image = models.ImageField(upload_to='tweets/')
 
 # reply for Tweet
 class TweetReply(models.Model):
@@ -25,7 +28,7 @@ class Tweet(models.Model):
     content = models.TextField(null=True, max_length=500)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     images = models.ManyToManyField(
-        models.ImageField(upload_to='tweets/', null=True, blank=True), related_name='images', blank=True)
+        TweetImage, related_name='images', blank=True)
     like = models.ManyToManyField(
         User, related_name='like', blank=True)
     reply = models.ManyToManyField(
@@ -42,4 +45,3 @@ class Tweet(models.Model):
 
     def __str__(self):
         return self.content[:50]
-

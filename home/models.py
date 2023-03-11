@@ -2,11 +2,7 @@ from django.db import models
 from user.models import User
 
 
-# Tweet Related Models
-class TweetImage(models.Model):
-    image = models.ImageField(upload_to='tweets/', null=True)
-
-
+# reply for Tweet
 class TweetReply(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(null=True, max_length=200)
@@ -14,7 +10,7 @@ class TweetReply(models.Model):
     retweet = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
 
-
+# Views of Tweet
 class TweetViews(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     impression = models.IntegerField(default=0)
@@ -29,7 +25,7 @@ class Tweet(models.Model):
     content = models.TextField(null=True, max_length=500)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     images = models.ManyToManyField(
-        TweetImage, related_name='images', blank=True)
+        models.ImageField(upload_to='tweets/', null=True, blank=True), related_name='images', blank=True)
     like = models.ManyToManyField(
         User, related_name='like', blank=True)
     reply = models.ManyToManyField(
@@ -47,4 +43,3 @@ class Tweet(models.Model):
     def __str__(self):
         return self.content[:50]
 
-# Tweet Related Models End

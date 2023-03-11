@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,7 +29,6 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-import os
 os.environ['GOOGLE_CLIENT_ID'] = '5763465190-5074d78erbf27sauhnelngkgqdqlkbcs.apps.googleusercontent.com'
 os.environ['GOOGLE_CLIENT_SECRET'] = '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'
 
@@ -108,16 +108,12 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                'social_django.context_processors.backends',
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = "twitter.wsgi.application"
-
-
-
 
 
 # Database
@@ -174,26 +170,3 @@ MEDIA_ROOT = BASE_DIR / 'static/images/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
-# Google authentication settings
-# GOOGLE_AUTH_ENABLED = True
-# GOOGLE_AUTH_REDIRECT_URI = 'http://localhost:8000/auth/google/callback/'
-# GOOGLE_AUTH_CLIENT_ID = '5763465190-dujso24s2fhh60h36e0tqo52n5o3gq22.apps.googleusercontent.com'
-# GOOGLE_AUTH_CLIENT_SECRET = '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'
-# GOOGLE_AUTH_SCOPES = ['https://www.googleapis.com/auth/userinfo.email']
-
-# AUTHENTICATION_BACKENDS = [
-#     'social_core.backends.google.GoogleOAuth2',
-#     'django.contrib.auth.backends.ModelBackend'
-# ]
-
-# LOGIN_URL = 'login'
-# LOGIN_REDIRECT_URL = 'home'
-# LOGOUT_URL = 'logout'
-# LOGOUT_REDIRECT_URL = 'home'
-# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '5763465190-ra6e4t7ljgbjestam1rhif7v3li4jqo4.apps.googleusercontent.com'
-# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
-# from django.contrib.sites.models import Site
-# site = Site.objects.get(id=1)
-# SITE_ID = site.id

@@ -1,10 +1,13 @@
 {% include 'home/index.html' %} {% block main %} {% load static %}
 <main class="main">
-  <div class="main-header row align-y" style="border-bottom: none;" >
-    <a title="Back" class="back" href="{% url 'home' %}"><i class="fa-solid fa-arrow-left"></i></a> <h2 style="font-size: 20px; font-weight: bold; margin: 13px">Tweet</h2>
+  <div class="main-header row align-y" style="border-bottom: none">
+    <a title="Back" class="back" href="{% url 'home' %}"
+      ><i class="fa-solid fa-arrow-left"></i
+    ></a>
+    <h2 style="font-size: 20px; font-weight: bold; margin: 13px">Tweet</h2>
   </div>
   <div style="height: 40px"></div>
-  <div class="col between post no-hover-bg" style="border-bottom: none;" >
+  <div class="col between post no-hover-bg" style="border-bottom: none">
     <!-- More, Profile Picture, username, Name -->
     <div class="row between align-y">
       <div class="row align-y">
@@ -44,7 +47,31 @@
 
       <!-- height-->
       <div style="height: 10px"></div>
+      <div
+        class="col"
+        id="imageContainer"
+        style="max-height: 1500px; overflow: auto; width: 100%"
+      >
 
+      {% if tweet.medias.exists %} {% for media in tweet.medias.all %} {% if media.ext == 'jpg' or media.ext == 'jpeg' or media.ext == 'png' or media.ext == 'gif' %}
+
+      <img
+        class="border-radius-15"
+        style="margin-bottom: 10px"
+        src="{{ media.media.url }}"
+      />
+      {% elif media.ext == 'mp4' or media.ext == 'webm' %}
+      <video
+        class="border-radius-15"
+        style="margin-bottom: 10px"
+        src="{{ media.media.url }}"
+        controls
+      ></video>
+      {% endif %}
+      {% endfor %} 
+      {% endif %}
+      
+      </div>
       <!-- More Details -->
       <div class="col">
         <div class="row align-y placeholder-color">
@@ -52,7 +79,8 @@
           <div class="dot"></div>
           &nbsp Feb 1, 2000 &nbsp
           <div class="dot"></div>
-          &nbsp <span class="bold">&nbsp {{tweet.views.all|length}}</span> &nbsp Views
+          &nbsp <span class="bold">&nbsp {{tweet.views.all|length}}</span> &nbsp
+          Views
         </div>
         <!-- height-->
         <div style="height: 10px"></div>
@@ -123,7 +151,7 @@
         >
           {% csrf_token %}
           <input type="hidden" name="id" value="{{tweet.id}}" />
-          <input type="hidden" name="where" value="{{request.path_info}}" >
+          <input type="hidden" name="where" value="{{request.path_info}}" />
           {% if request.user in tweet.like.all %}
           <button class="light-hover filled-action" title="View" type="submit">
             <i class="fa-solid fa-heart"></i>
@@ -145,25 +173,26 @@
       <!-- Post Actions End -->
     </div>
     <!-- Post Main end -->
-{% if request.user.is_authenticated %}
+    {% if request.user.is_authenticated %}
     <div class="hr1"></div>
     {% else %}
-    <div style="width: 107%;margin-left: -19.5px;" class="hr1"></div>
+    <div style="width: 107%; margin-left: -19.5px" class="hr1"></div>
     {% endif %}
   </div>
 
-
-{% if request.user.is_authenticated %}
+  {% if request.user.is_authenticated %}
   <!-- Tweet Box -->
   <form method="POST" action="">
     {% csrf_token %}
-    <small style="margin-left: 70px;" class="placeholder-color" >Replying to <span class="primary-text" >@{{tweet.user}}</span></small>
-    <div class="tweet-box row" >
+    <small style="margin-left: 70px" class="placeholder-color"
+      >Replying to <span class="primary-text">@{{tweet.user}}</span></small
+    >
+    <div class="tweet-box row">
       <img
         src="{{request.user.avatar.url}}"
         width="50px"
         height="50px"
-        style="border-radius: 50%;margin: 10px;"
+        style="border-radius: 50%; margin: 10px"
       />
       <div class="col" style="width: 87%; padding-right: 25px">
         <textarea
@@ -201,7 +230,7 @@
     </div>
   </form>
   {% endif %}
-  <div style="height: 300px;" ></div>
+  <div style="height: 300px"></div>
 </main>
 
 {% endblock main %}

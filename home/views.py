@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Tweet
+from .models import Tweet, TweetMedia
 from user.models import User
 from django.contrib.auth.decorators import login_required
-
+from django.contrib import messages
 
 def home(request):
     tweets = Tweet.objects.all()
@@ -44,11 +44,12 @@ def followers(request, username):
     if user != None:
         followers = user.followers.all()
         context = {
-        'title': f'People following {user.name} (@{user})', 'follows': followers, 'user': user}
-        return render(request, 'home/profile/followers.html',context)
+            'title': f'People following {user.name} (@{user})', 'follows': followers, 'user': user}
+        return render(request, 'home/profile/followers.html', context)
     else:
         return HttpResponse('This account doesn’t exist')
-    
+
+
 def following(request, username):
     try:
         user = User.objects.get(username=username)
@@ -58,8 +59,8 @@ def following(request, username):
     if user != None:
         following = user.following.all()
         context = {
-        'title': f'People followed by {user.name} (@{user})', 'follows': following, 'user': user}
-        return render(request, 'home/profile/following.html',context)
+            'title': f'People followed by {user.name} (@{user})', 'follows': following, 'user': user}
+        return render(request, 'home/profile/following.html', context)
     else:
         return HttpResponse('This account doesn’t exist')
 
@@ -71,6 +72,19 @@ def tweet(request):
     if request.method == 'POST' and request.user.is_authenticated:
         tweet = Tweet.objects.create(
             user=request.user, content=request.POST.get('content'))
+        medias = request.FILES.getlist('medias')
+        if medias:
+            for media in medias:
+                media_ext = media.name.split('.')[-1]
+                if media_ext in ['jpg', 'jpeg', 'png', 'gif', 'mp4', 'webm']:
+                    tweet_media = TweetMedia.objects.create(
+                        media=media,ext=media_ext)
+                    tweet.medias.add(tweet_media)
+                else:
+                    messages.error(
+                    request, 'Unsupported file')
+                    tweet.delete()
+                    return redirect('tweet')
         tweet.save()
         return redirect('home')
     context = {'title': 'Tweet'}

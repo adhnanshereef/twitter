@@ -1,4 +1,7 @@
-<div class="row between post" onclick="location.href='{% url 'status' tweet.user tweet.id %}';">
+<div
+  class="row between post"
+  onclick="location.href='{% url 'status' tweet.user tweet.id %}';"
+>
   <img
     width="50"
     height="50"
@@ -25,12 +28,38 @@
       </button>
     </div>
     <p class="post-content">{{tweet.content}}</p>
-    <div class="row align-y post-actions">
 
+    <div class="height-10" ></div>
+
+    <!-- Image Container -->
+    <div
+      class="col"
+      id="imageContainer"
+      style="max-height: 1500px; overflow: auto; width: 100%"
+    >
+    {% if tweet.medias.exists %} {% for media in tweet.medias.all %} {% if media.ext == 'jpg' or media.ext == 'jpeg' or media.ext == 'png' or media.ext == 'gif' %}
+
+      <img
+        class="border-radius-15"
+        style="margin-bottom: 10px"
+        src="{{ media.media.url }}"
+      />
+      {% elif media.ext == 'mp4' or media.ext == 'webm' %}
+      <video
+        class="border-radius-15"
+        style="margin-bottom: 10px"
+        src="{{ media.media.url }}"
+        controls
+      ></video>
+      {% endif %}
+      {% endfor %} 
+      {% endif %}
+    </div>
+    <div class="row align-y post-actions">
       <!-- Reply -->
       <form method="post" action="" class="row post-action">
         {% csrf_token %}
-        <input type="hidden" name="id" value="{{tweet.id}}" >
+        <input type="hidden" name="id" value="{{tweet.id}}" />
         <button title="Reply" class="light-hover" type="submit">
           <i class="fa-regular fa-comment"></i>
         </button>
@@ -42,7 +71,7 @@
       <!-- Retweet -->
       <form method="post" action="" class="row post-action">
         {% csrf_token %}
-        <input type="hidden" name="id" value="{{tweet.id}}" >
+        <input type="hidden" name="id" value="{{tweet.id}}" />
         <button class="light-hover" title="Retweet" type="submit">
           <i class="fa-solid fa-retweet"></i>
         </button>
@@ -52,10 +81,14 @@
       </form>
 
       <!-- Like -->
-      <form method="post" action="{% url 'likeTweet' %}" class="row post-action">
+      <form
+        method="post"
+        action="{% url 'likeTweet' %}"
+        class="row post-action"
+      >
         {% csrf_token %}
-        <input type="hidden" name="id" value="{{tweet.id}}" >
-        <input type="hidden" name="where" value="{{request.path_info}}" >
+        <input type="hidden" name="id" value="{{tweet.id}}" />
+        <input type="hidden" name="where" value="{{request.path_info}}" />
         {% if request.user in tweet.like.all %}
         <button class="light-hover filled-action" title="Like" type="submit">
           <i class="fa-solid fa-heart"></i>
@@ -73,7 +106,7 @@
       <!-- Views -->
       <form method="post" action="" class="row post-action">
         {% csrf_token %}
-        <input type="hidden" name="id" value="{{tweet.id}}" >
+        <input type="hidden" name="id" value="{{tweet.id}}" />
         <button class="light-hover" title="View" type="submit">
           <i class="fa-solid fa-chart-simple"></i>
         </button>

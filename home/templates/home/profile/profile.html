@@ -98,9 +98,11 @@
         ><span class="bold">{{user.followers.all|length}}</span> Followers</a
       >
     </div>
+
+    <!-- Relation Between Users -->
     {% if request.user.is_authenticated %}
     <small style="margin-top: 10px;" class="placeholder-color"
-      >Not followed by anyone you’re following</small
+      ></small
     >
     {% endif %}
 

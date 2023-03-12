@@ -14,6 +14,9 @@
 6. Install Django `pip install Django`
 7. Install Pillow `pip install Pillow`
 8. Install alluth essentials for google authentication `pip install django-allauth google-auth google-auth-oauthlib google-auth-httplib2`
+
+>or `pip install Django Pillow django-allauth google-auth google-auth-oauthlib google-auth-httplib2`
+
 9. Make migrations `python manage.py makemigrations`
 10. Migrate `python manage.py migrate`
 11. Run server `python manage.py runserver`

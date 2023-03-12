@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Tweet, TweetMedia
 from user.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+
 
 def home(request):
     tweets = Tweet.objects.all()
@@ -66,31 +67,61 @@ def following(request, username):
 
 
 # Tweet views start
-
 @login_required(login_url='login')
 def tweet(request):
     if request.method == 'POST' and request.user.is_authenticated:
+        # Import Medias
+        medias = request.FILES.getlist('medias')
+
+        # Checking the medias are able to upload
+        video_count = 0
+        if medias or request.POST.get('content'):
+            if medias:
+                if len(medias)>4:
+                    messages.error(
+                            request, "Can't upload medias more than 4")
+                    return redirect('tweet')
+                for media in medias:
+                    media_ext = media.name.split('.')[-1]
+                    if media_ext in ['jpg', 'jpeg', 'png', 'gif', 'mp4', 'webm']:
+                        if media_ext in ['mp4', 'webm']:
+                            video_count += 1
+                    else:
+                        messages.error(
+                            request, 'Unsupported file')
+                        return redirect('tweet')
+        else:
+            messages.error(
+                request, 'There is no content to tweet!')
+            return redirect('tweet')
+        
+        if video_count > 1:
+            messages.error(
+                request, "Please either add 1 video")
+            return redirect('tweet')
+        video_count = 0
+        # End of checking 
+        # Virification completed
+        
+        # Create tweet object
         tweet = Tweet.objects.create(
             user=request.user, content=request.POST.get('content'))
-        medias = request.FILES.getlist('medias')
+
+        # Adding medias to tweet object if there is 
         if medias:
             for media in medias:
                 media_ext = media.name.split('.')[-1]
-                if media_ext in ['jpg', 'jpeg', 'png', 'gif', 'mp4', 'webm']:
-                    tweet_media = TweetMedia.objects.create(
-                        media=media,ext=media_ext)
-                    tweet.medias.add(tweet_media)
-                else:
-                    messages.error(
-                    request, 'Unsupported file')
-                    tweet.delete()
-                    return redirect('tweet')
+                tweet_media = TweetMedia.objects.create(
+                    media=media, ext=media_ext)
+                tweet.medias.add(tweet_media)
+        
+        # Save and return to home
         tweet.save()
-        return redirect('home')
+        return redirect('profile', username=request.user)
     context = {'title': 'Tweet'}
     return render(request, 'home/tweet/tweet.html', context)
 
-
+# To view tweeted
 def status(request, username, tweetid):
     try:
         user_checkup = User.objects.get(username=username)
@@ -108,7 +139,7 @@ def status(request, username, tweetid):
         'title': f'{user.name} on Twitter: "{tweet.content[:20]}" / Twitter', 'tweet': tweet, 'user': user}
     return render(request, 'home/tweet/status.html', context)
 
-
+# Like Tweet
 def like_tweet(request):
     if not request.user.is_authenticated:
         return redirect('login')
